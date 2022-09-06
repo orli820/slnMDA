@@ -33,7 +33,6 @@ namespace prjMDA
             this.label6 = new System.Windows.Forms.Label();
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDueday = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPoint = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +51,8 @@ namespace prjMDA
             this.label7 = new System.Windows.Forms.Label();
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.btnsearch = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCoupon)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -100,15 +101,6 @@ namespace prjMDA
             this.label1.TabIndex = 57;
             this.label1.Text = "優惠折扣Discount";
             // 
-            // txtDueday
-            // 
-            this.txtDueday.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtDueday.Location = new System.Drawing.Point(561, 417);
-            this.txtDueday.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDueday.Name = "txtDueday";
-            this.txtDueday.Size = new System.Drawing.Size(162, 34);
-            this.txtDueday.TabIndex = 58;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -125,7 +117,7 @@ namespace prjMDA
             // txtPoint
             // 
             this.txtPoint.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtPoint.Location = new System.Drawing.Point(561, 503);
+            this.txtPoint.Location = new System.Drawing.Point(561, 511);
             this.txtPoint.Margin = new System.Windows.Forms.Padding(4);
             this.txtPoint.Name = "txtPoint";
             this.txtPoint.Size = new System.Drawing.Size(162, 34);
@@ -137,7 +129,7 @@ namespace prjMDA
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(303, 506);
+            this.label3.Location = new System.Drawing.Point(303, 514);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(236, 25);
@@ -320,11 +312,36 @@ namespace prjMDA
             this.btnsearch.UseVisualStyleBackColor = true;
             this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(561, 420);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(184, 31);
+            this.dateTimePicker1.TabIndex = 71;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(556, 454);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(186, 25);
+            this.label9.TabIndex = 72;
+            this.label9.Text = "最多至2076/06/06";
+            // 
             // Coupon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1858, 888);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtCouponCode);
             this.Controls.Add(this.label5);
@@ -332,7 +349,6 @@ namespace prjMDA
             this.Controls.Add(this.dataGridViewCoupon);
             this.Controls.Add(this.txtPoint);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtDueday);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDiscount);
             this.Controls.Add(this.label1);
@@ -355,7 +371,6 @@ namespace prjMDA
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDueday;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPoint;
         private System.Windows.Forms.Label label3;
@@ -374,5 +389,7 @@ namespace prjMDA
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label9;
     }
 }

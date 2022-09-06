@@ -102,6 +102,22 @@ namespace prjMDA
                 MessageBox.Show("資料輸入重複");
                 return;
             }
+            var q2 = (from m in db.電影Movies
+                      where m.電影編號Movie_ID.ToString() == txtMovieId.Text
+                      select m).Any();
+            var q3 = (from d in db.電影圖片總表MovieImages
+                      where d.圖片編號Image_ID.ToString() == txtImageId.Text
+                      select d).Any();
+            if (!q2)
+            {
+                MessageBox.Show("請輸入正確資料");
+                return;
+            }
+            if (!q3)
+            {
+                MessageBox.Show("請輸入正確資料");
+                return;
+            }
             電影圖片MovieIImagesList.電影編號Movie_ID = int.Parse(txtMovieId.Text);
             電影圖片MovieIImagesList.圖片編號Image_ID = int.Parse(txtImageId.Text);
             this.db.電影圖片MovieIImagesList.Add(電影圖片MovieIImagesList);
@@ -123,6 +139,22 @@ namespace prjMDA
             if ( q1)
             {
                 MessageBox.Show("資料輸入重複");
+                return;
+            }
+            var q2 = (from m in db.電影Movies
+                      where m.電影編號Movie_ID.ToString() == txtMovieId.Text
+                      select m).Any();
+            var q3 = (from d in db.電影圖片總表MovieImages
+                      where d.圖片編號Image_ID.ToString() == txtImageId.Text
+                      select d).Any();
+            if (!q2)
+            {
+                MessageBox.Show("請輸入正確資料");
+                return;
+            }
+            if (!q3)
+            {
+                MessageBox.Show("請輸入正確資料");
                 return;
             }
             var q = (from p in this.db.電影圖片MovieIImagesList.AsEnumerable()

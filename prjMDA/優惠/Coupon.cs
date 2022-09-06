@@ -28,7 +28,7 @@ namespace prjMDA
         void showBonus()
         {
             var q = from a in db.優惠總表Coupon.AsEnumerable()
-                    select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("C0")}",a.優惠截止日期CouponDueDate,a.優惠所需紅利BonusCost };
+                    select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("0")}",a.優惠截止日期CouponDueDate,a.優惠所需紅利BonusCost };
             dataGridViewCoupon.DataSource = q.ToList();
         }
 
@@ -55,8 +55,8 @@ namespace prjMDA
             }
             優惠總表Coupon.優惠名稱Coupon_Name = txtBonusName.Text;
             優惠總表Coupon.優惠代碼Coupon_Code = txtCouponCode.Text;
-            優惠總表Coupon.優惠折扣CouponDiscount = decimal.Parse(txtDiscount.Text);
-            優惠總表Coupon.優惠截止日期CouponDueDate =Convert.ToDateTime(txtDueday.Text);
+            優惠總表Coupon.優惠折扣CouponDiscount = Convert.ToDecimal(txtDiscount.Text);
+            優惠總表Coupon.優惠截止日期CouponDueDate = Convert.ToDateTime(dateTimePicker1.Value);
             優惠總表Coupon.優惠所需紅利BonusCost = int.Parse(txtPoint.Text);
 
             this.db.優惠總表Coupon.Add(優惠總表Coupon);
@@ -71,13 +71,13 @@ namespace prjMDA
             txtBonusName.Text = "";
             txtCouponCode.Text = "";
             txtDiscount.Text = "";
-            txtDueday.Text = "";
+            dateTimePicker1.Text = "";
             txtPoint.Text = "";
         }
 
         private void btnLanguageUpDate_Click(object sender, EventArgs e)
         {
-            if (txtBonusName.Text == "" || txtDueday.Text=="")
+            if (txtBonusName.Text == "" || dateTimePicker1.Text=="")
             {
                 MessageBox.Show("請輸入資料");
                 return;
@@ -87,8 +87,8 @@ namespace prjMDA
                      select p).FirstOrDefault();
             q.優惠名稱Coupon_Name = txtBonusName.Text;
             q.優惠代碼Coupon_Code = txtCouponCode.Text;
-            q.優惠折扣CouponDiscount = decimal.Parse(txtDiscount.Text);
-            q.優惠截止日期CouponDueDate = Convert.ToDateTime(txtDueday.Text);
+            q.優惠折扣CouponDiscount = Convert.ToDecimal(txtDiscount.Text);
+            q.優惠截止日期CouponDueDate = dateTimePicker1.Value;
             q.優惠所需紅利BonusCost = int.Parse(txtPoint.Text);
             this.db.SaveChanges();
             showBonus();
@@ -101,7 +101,7 @@ namespace prjMDA
             txtBonusName.Text = dataGridViewCoupon.CurrentRow.Cells["優惠名稱Coupon_Name"].Value.ToString();
             txtCouponCode.Text= dataGridViewCoupon.CurrentRow.Cells["優惠代碼Coupon_Code"].Value.ToString();
             txtDiscount.Text = (dataGridViewCoupon.CurrentRow.Cells["優惠折扣CouponDiscount"].Value).ToString();
-            txtDueday.Text =Convert.ToDateTime(dataGridViewCoupon.CurrentRow.Cells["優惠截止日期CouponDueDate"].Value).ToString("yyyy/MM/dd");
+            dateTimePicker1.Text =Convert.ToDateTime(dataGridViewCoupon.CurrentRow.Cells["優惠截止日期CouponDueDate"].Value).ToString("yyyy/MM/dd");
 
             txtPoint.Text = dataGridViewCoupon.CurrentRow.Cells["優惠所需紅利BonusCost"].Value.ToString();
         }
@@ -118,7 +118,7 @@ namespace prjMDA
                         || a.優惠折扣CouponDiscount.ToString().Contains(txtsearch.Text)
                         || a.優惠編號Coupon_ID.ToString().Contains(txtsearch.Text)
                         || a.優惠截止日期CouponDueDate.ToString().Contains(txtsearch.Text)
-                        select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("C0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
+                        select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
                 dataGridViewCoupon.DataSource = q.ToList();
             }
             else 
@@ -129,7 +129,7 @@ namespace prjMDA
         {
             var q = from a in db.優惠總表Coupon.AsEnumerable()
                     where a.優惠截止日期CouponDueDate<= Convert.ToDateTime(comboBox1.Text)
-                    select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("C0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
+                    select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
             dataGridViewCoupon.DataSource = q.ToList();
 
         }
@@ -137,6 +137,11 @@ namespace prjMDA
         private void Coupon_Click(object sender, EventArgs e)
         {
             addnull();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

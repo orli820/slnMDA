@@ -551,7 +551,7 @@ namespace prjMDA
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewcplist;
-        private System.Windows.Forms.ComboBox comboBox4;
+       
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnviewBonus;

@@ -39,7 +39,7 @@ namespace prjMDA
         void viewcoupon()
         {
             var q = from a in db.優惠總表Coupon.AsEnumerable()
-                    select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{a.優惠折扣CouponDiscount.ToString("C0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
+                    select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{a.優惠折扣CouponDiscount.ToString("0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
             dataGridViewCoupon.DataSource = q.ToList();
         }
         void viewmember()
@@ -68,6 +68,22 @@ namespace prjMDA
             if (txtmemberid.Text== "")
             {
                 MessageBox.Show("請輸入資料");
+                return;
+            }
+            var q2 = (from m in db.會員Members
+                      where m.會員編號Member_ID.ToString() == txtmemberid.Text
+                      select m).Any();
+            var q1 = (from d in db.優惠總表Coupon
+                      where d.優惠編號Coupon_ID.ToString() == txtCoupon_ID.Text
+                      select d).Any();
+            if (!q2)
+            {
+                MessageBox.Show("請輸入正確資料");
+                return;
+            }
+            if (!q1)
+            {
+                MessageBox.Show("請輸入正確資料");
                 return;
             }
             優惠明細CouponLists.會員編號Member_ID= int.Parse(txtmemberid.Text);
@@ -109,6 +125,22 @@ namespace prjMDA
             if (txtmemberid.Text == "")
             {
                 MessageBox.Show("請輸入資料");
+                return;
+            }
+            var q2 = (from m in db.會員Members
+                      where m.會員編號Member_ID.ToString() == txtmemberid.Text
+                      select m).Any();
+            var q1 = (from d in db.優惠總表Coupon
+                      where d.優惠編號Coupon_ID.ToString() == txtCoupon_ID.Text
+                      select d).Any();
+            if (!q2)
+            {
+                MessageBox.Show("請輸入正確資料");
+                return;
+            }
+            if (!q1)
+            {
+                MessageBox.Show("請輸入正確資料");
                 return;
             }
             var q = (from a in db.優惠明細CouponLists.AsEnumerable()
@@ -192,7 +224,7 @@ namespace prjMDA
             {
                 var q = from a in db.優惠總表Coupon.AsEnumerable()
                         where a.優惠截止日期CouponDueDate <= Convert.ToDateTime(comboBox2.Text)
-                        select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("C0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
+                        select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
                 dataGridViewCoupon.DataSource = q.ToList();
                 
             }
@@ -205,7 +237,7 @@ namespace prjMDA
                          || a.優惠折扣CouponDiscount.ToString().Contains(txtsearchcoupon.Text)
                          || a.優惠所需紅利BonusCost.ToString().Contains(txtsearchcoupon.Text)
                          || a.優惠截止日期CouponDueDate.ToString().Contains(txtsearchcoupon.Text)
-                         select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("C0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
+                         select new { a.優惠編號Coupon_ID, a.優惠名稱Coupon_Name, a.優惠代碼Coupon_Code, 優惠折扣CouponDiscount = $"{ a.優惠折扣CouponDiscount.ToString("0")}", a.優惠截止日期CouponDueDate, a.優惠所需紅利BonusCost };
                 dataGridViewCoupon.DataSource = q1.ToList();
             }
             clearsearch();
