@@ -326,12 +326,12 @@ namespace prjMDA
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label9.ForeColor = System.Drawing.Color.Red;
             this.label9.Location = new System.Drawing.Point(556, 454);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(186, 25);
+            this.label9.Size = new System.Drawing.Size(157, 22);
             this.label9.TabIndex = 72;
             this.label9.Text = "最多至2076/06/06";
             // 
