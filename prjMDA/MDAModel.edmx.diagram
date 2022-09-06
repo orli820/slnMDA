@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="34c49b916bbd41349f9a6e71a744ad41" Name="Diagram1">
+        <EntityTypeShape EntityType="MDAModel.sysdiagram" Width="1.5" PointX="1.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.片單總表MovieLists" Width="1.5" PointX="3" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.片種總表TotalTypes" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.出售座位明細SeatSold" Width="1.5" PointX="12.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.出售座位狀態SeatStatus" Width="1.5" PointX="12.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.回覆樓數Floor" Width="1.5" PointX="7.5" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.次片種總表Types" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.我的片單MyMovieLists" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.我的追蹤清單MyFollowLists" Width="1.5" PointX="9.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.系列電影MovieSeries" Width="1.5" PointX="0.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.訂單明細OrderDetail" Width="1.5" PointX="18" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.訂單狀態OrderStatus" Width="1.5" PointX="13.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.訂單總表Orders" Width="1.5" PointX="15.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.追讚倒ActionTypes" Width="1.5" PointX="7.5" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.商品資料Products" Width="1.5" PointX="15.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.國家總表Countrys" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.票種TicketType" Width="1.5" PointX="13.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.票價資訊TicketPrice" Width="1.5" PointX="15.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.場次Screening" Width="1.5" PointX="10.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.評論圖片明細CommentImagesList" Width="1.5" PointX="7.5" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.評論圖片總表CommentImages" Width="1.5" PointX="5.25" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.會員Members" Width="1.5" PointX="3" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影Movies" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影分級MovieRating" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影片種MovieType" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影主演Cast" Width="1.5" PointX="8.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影代碼MovieCode" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影院Theater" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影產地MovieOrigin" Width="1.5" PointX="8.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影評論MovieComment" Width="1.5" PointX="5.25" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影圖片MovieIImagesList" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影圖片總表MovieImages" Width="1.5" PointX="6" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影語言MovieLanguage" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.電影導演MovieDirector" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.對象Targets" Width="1.5" PointX="7.5" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.演員總表Actors" Width="1.5" PointX="6" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.影城MainTheater" Width="1.5" PointX="3.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.影廳Cinema" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.標籤明細HashtagsList" Width="1.5" PointX="7.5" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.標籤總表Hashtags" Width="1.5" PointX="5.25" PointY="38.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.導演總表Director" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.優惠明細CouponLists" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.優惠總表Coupon" Width="1.5" PointX="11.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDAModel.購買商品明細Receipt" Width="1.5" PointX="18" PointY="19.625" IsExpanded="true" />
+        <AssociationConnector Association="MDAModel.FK_我的片單MyMovieLists_片單總表MovieLists" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_次片種總表Types_片種總表TotalTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_出售座位明細SeatSold_訂單總表Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_出售座位明細SeatSold_場次Screening" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_出售座位狀態SeatStatus_場次Screening" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_回覆樓數_Floor_電影評論_Movie_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的追蹤清單MyFollowLists_回覆樓數Floor" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影片種_Movie_Type_片種總表_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的片單MyMovieLists_會員Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的片單MyMovieLists_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的追蹤清單MyFollowLists_會員Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的追蹤清單MyFollowLists_電影評論MovieComment" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_我的追蹤清單MyFollowLists_對象Targets" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影_Movies_系列電影_Movie_Series" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_訂單明細OrderDetail_訂單總表Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_訂單明細OrderDetail_票價資訊TicketPrice" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_訂單總表Orders_訂單狀態OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_訂單總表Orders_場次Screening" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_訂單總表Orders_會員Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_訂單總表Orders_優惠明細BonusLists" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_購買商品明細Receipt_訂單總表Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_商品資料Products_電影院Theater" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_購買商品明細Receipt_商品資料Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影產地_Movie_Origin_國家總表_Countrys" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_票價資訊TicketPrice_票種TicketType" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_票價資訊TicketPrice_影城MainTheater" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_場次_Screening_電影代碼_Movie_Code" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_場次_Screening_影廳_Cinema" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_評論圖片明細CommandImagesList_評論圖庫CommandImages" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_評論圖片明細CommandImagesList_電影評論MovieComment" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_優惠明細CouponLists_會員Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影Movies_電影分級MovieRating" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影片種MovieType_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影主演Cast_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影代碼MovieCode_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影產地MovieOrigin_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影評論MovieComment_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影圖片MovieIImagesList_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影導演MovieDirector_電影Movies" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_主演_Cast_演員_Actors" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影代碼_Movie_Code_電影語言_Movie_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影院Theater_影城MainTheater" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_影廳_Cinema_電影院_Theater" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_標籤明細_電影評論MovieComment" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影圖片MovieIImages_圖片總表Images" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_電影導演_Movie_Director_導演總表_Director" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_標籤明細_標籤總表Hashtag" ManuallyRouted="false" />
+        <AssociationConnector Association="MDAModel.FK_優惠明細BonusLists_優惠總表Bonus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

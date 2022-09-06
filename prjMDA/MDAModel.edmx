@@ -1,0 +1,3088 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="片單總表MovieLists">
+          <Key>
+            <PropertyRef Name="片單總表編號MovieList_ID" />
+          </Key>
+          <Property Name="片單總表編號MovieList_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="片單總表名稱List_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="片種總表TotalTypes">
+          <Key>
+            <PropertyRef Name="片種編號TotalType_ID" />
+          </Key>
+          <Property Name="片種編號TotalType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="片種名稱TotalType_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="出售座位明細SeatSold">
+          <Key>
+            <PropertyRef Name="出售明細編號Sold_ID" />
+          </Key>
+          <Property Name="訂單編號Order_ID" Type="int" Nullable="false" />
+          <Property Name="出售明細編號Sold_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="場次編號Screening_ID" Type="int" Nullable="false" />
+          <Property Name="座位表編號Seat_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="出售座位狀態SeatStatus">
+          <Key>
+            <PropertyRef Name="出售座位編號Seat_ID" />
+          </Key>
+          <Property Name="出售座位編號Seat_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="場次編號Screening_ID" Type="int" Nullable="false" />
+          <Property Name="出售座位資訊SeatSoldInfo" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="回覆樓數Floor">
+          <Key>
+            <PropertyRef Name="樓數編號Floor_ID" />
+          </Key>
+          <Property Name="樓數編號Floor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="評論編號Comment_ID" Type="int" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+          <Property Name="回覆內容Floors" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="發佈時間Floor_Time" Type="smalldatetime" Nullable="false" />
+          <Property Name="被按讚次數Thumbs_Up" Type="int" />
+          <Property Name="被倒讚次數Thumbs_Down" Type="int" />
+          <Property Name="屏蔽Invisible" Type="int" Nullable="false" />
+          <Property Name="檢舉Report" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="次片種總表Types">
+          <Key>
+            <PropertyRef Name="次片種編號Type_ID" />
+          </Key>
+          <Property Name="片種編號TotalType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="次片種編號Type_ID" Type="int" Nullable="false" />
+          <Property Name="次片種名稱Type_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="我的片單MyMovieLists">
+          <Key>
+            <PropertyRef Name="我的片單MyMovieList_ID" />
+          </Key>
+          <Property Name="我的片單MyMovieList_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="片單總表編號MovieList_ID" Type="int" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="我的追蹤清單MyFollowLists">
+          <Key>
+            <PropertyRef Name="我的追蹤清單編號CF_ID" />
+          </Key>
+          <Property Name="我的追蹤清單編號CF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+          <Property Name="對象Target_ID" Type="int" Nullable="false" />
+          <Property Name="追讚倒編號ActionType_ID" Type="int" Nullable="false" />
+          <Property Name="連接編號Connect_ID" Type="int" Nullable="false" />
+          <Property Name="檢舉理由ReportReason" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="系列電影MovieSeries">
+          <Key>
+            <PropertyRef Name="系列編號Series_ID" />
+          </Key>
+          <Property Name="系列編號Series_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="系列名稱Series_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="訂單明細OrderDetail">
+          <Key>
+            <PropertyRef Name="訂單明細編號OrderDetail_ID" />
+          </Key>
+          <Property Name="訂單編號Order_ID" Type="int" Nullable="false" />
+          <Property Name="訂單明細編號OrderDetail_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="票價明細Ticket_ID" Type="int" Nullable="false" />
+          <Property Name="張數Count" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="訂單狀態OrderStatus">
+          <Key>
+            <PropertyRef Name="訂單狀態編號OrderStatus_ID" />
+          </Key>
+          <Property Name="訂單狀態編號OrderStatus_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="訂單狀態OrderStatus_Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="訂單總表Orders">
+          <Key>
+            <PropertyRef Name="訂單編號Order_ID" />
+          </Key>
+          <Property Name="訂單編號Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+          <Property Name="訂單時間OrderTime" Type="datetime" Nullable="false" />
+          <Property Name="場次編號Screening_ID" Type="int" Nullable="false" />
+          <Property Name="優惠明細編號CouponList_ID" Type="int" Nullable="false" />
+          <Property Name="訂單狀態編號OrderStatus_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="追讚倒ActionTypes">
+          <Key>
+            <PropertyRef Name="追讚倒編號ActionType_ID" />
+          </Key>
+          <Property Name="追讚倒編號ActionType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="追讚倒名稱ActionType_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="商品資料Products">
+          <Key>
+            <PropertyRef Name="商品編號Product_ID" />
+          </Key>
+          <Property Name="商品編號Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="商品名稱Product_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="商品價格Product_Price" Type="money" Nullable="false" />
+          <Property Name="電影院編號Theater_ID" Type="int" Nullable="false" />
+          <Property Name="商品圖片Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="國家總表Countrys">
+          <Key>
+            <PropertyRef Name="國家編號Country_ID" />
+          </Key>
+          <Property Name="國家編號Country_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="國家名稱Country_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="國旗Country_Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="票種TicketType">
+          <Key>
+            <PropertyRef Name="票種編號TicketType_ID" />
+          </Key>
+          <Property Name="票種編號TicketType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="票種名稱TicketType_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="票價資訊TicketPrice">
+          <Key>
+            <PropertyRef Name="票價明細Ticket_ID" />
+          </Key>
+          <Property Name="票價明細Ticket_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="影城編號MainTheater_ID" Type="int" Nullable="false" />
+          <Property Name="票種編號TicketType_ID" Type="int" Nullable="false" />
+          <Property Name="價格TicketPrice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="場次Screening">
+          <Key>
+            <PropertyRef Name="場次編號Screening_ID" />
+          </Key>
+          <Property Name="場次編號Screening_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="影廳編號Cinema_ID" Type="int" Nullable="false" />
+          <Property Name="電影代碼Movie_Code" Type="int" Nullable="false" />
+          <Property Name="放映日期Play_Date" Type="date" Nullable="false" />
+          <Property Name="放映開始時間Play_Time" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="評論圖片明細CommentImagesList">
+          <Key>
+            <PropertyRef Name="評論圖片編號CC_ID" />
+          </Key>
+          <Property Name="評論圖片編號CC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="評論圖庫編號CommentImage_ID" Type="int" Nullable="false" />
+          <Property Name="評論編號Comment_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="評論圖片總表CommentImages">
+          <Key>
+            <PropertyRef Name="評論圖庫編號CommentImage_ID" />
+          </Key>
+          <Property Name="評論圖庫編號CommentImage_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="圖片Image" Type="varbinary(max)" Nullable="false" />
+          <Property Name="屏蔽Invisible" Type="int" Nullable="false" />
+          <Property Name="檢舉Report" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="會員Members">
+          <Key>
+            <PropertyRef Name="會員編號Member_ID" />
+          </Key>
+          <Property Name="會員編號Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員電話Cellphone" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="密碼Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="姓氏L_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="名字F_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="暱稱NickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="生日BirthDate" Type="date" />
+          <Property Name="性別Gender" Type="int" />
+          <Property Name="電子信箱Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="地址Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="紅利點數Bonus" Type="int" />
+          <Property Name="正式會員Formal" Type="bit" />
+          <Property Name="會員權限Permission" Type="int" />
+          <Property Name="會員照片Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="電影Movies">
+          <Key>
+            <PropertyRef Name="電影編號Movie_ID" />
+          </Key>
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="系列編號Series_ID" Type="int" />
+          <Property Name="中文標題Title_Cht" Type="nvarchar" MaxLength="50" />
+          <Property Name="英文標題Title_Eng" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="上映年份Release_Year" Type="int" Nullable="false" />
+          <Property Name="上映日期Release_Date" Type="date" />
+          <Property Name="片長Runtime" Type="int" Nullable="false" />
+          <Property Name="電影分級編號Rating_ID" Type="int" Nullable="false" />
+          <Property Name="評分Rate" Type="numeric" Precision="2" Scale="1" />
+          <Property Name="期待度anticipation" Type="numeric" Precision="2" Scale="1" />
+          <Property Name="票房BoxOffice" Type="nvarchar" MaxLength="50" />
+          <Property Name="劇情大綱Plot" Type="nvarchar(max)" />
+          <Property Name="最後上映日期Released_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="電影分級MovieRating">
+          <Key>
+            <PropertyRef Name="分級編號Rating_ID" />
+          </Key>
+          <Property Name="分級編號Rating_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="分級級數Rating_Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="分級說明Rating_illustrate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="分級圖片Rating_Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="電影片種MovieType">
+          <Key>
+            <PropertyRef Name="電影片種編號MT_ID" />
+          </Key>
+          <Property Name="電影片種編號MT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="片種編號Type_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影主演Cast">
+          <Key>
+            <PropertyRef Name="主演編號MA_ID" />
+          </Key>
+          <Property Name="主演編號MA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="演員編號Actor_ID" Type="int" Nullable="false" />
+          <Property Name="角色名字Character_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="角色說明Character_illustrate" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="電影代碼MovieCode">
+          <Key>
+            <PropertyRef Name="電影代碼編號MovieCode_ID int" />
+          </Key>
+          <Property Name="電影代碼編號MovieCode_ID int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="語言編號Language_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影院Theater">
+          <Key>
+            <PropertyRef Name="電影院編號Theater_ID" />
+          </Key>
+          <Property Name="電影院編號Theater_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影院名稱Theater_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="影城編號MainTheater_ID" Type="int" Nullable="false" />
+          <Property Name="營業時間BusinessHours" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="電話Phone" Type="varchar" MaxLength="10" />
+          <Property Name="地址Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="官方網站URL" Type="varchar" MaxLength="50" />
+          <Property Name="電影院照片Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="電影產地MovieOrigin">
+          <Key>
+            <PropertyRef Name="電影產地編號MC_ID" />
+          </Key>
+          <Property Name="電影產地編號MC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="國家編號Country_ID" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影評論MovieComment">
+          <Key>
+            <PropertyRef Name="評論編號Comment_ID" />
+          </Key>
+          <Property Name="評論編號Comment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="評分Rate" Type="numeric" Precision="2" Scale="1" />
+          <Property Name="期待度anticipation" Type="numeric" Precision="2" Scale="1" />
+          <Property Name="評論標題Comment_Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="評論內容Comments" Type="nvarchar(max)" />
+          <Property Name="發佈時間Comment_Time" Type="smalldatetime" Nullable="false" />
+          <Property Name="觀影日期Viewing_Time" Type="date" />
+          <Property Name="觀影方式Source" Type="nvarchar" MaxLength="50" />
+          <Property Name="公開等級編號Public_ID" Type="int" />
+          <Property Name="是否開放討論串OX_Floor" Type="bit" />
+          <Property Name="屏蔽Invisible" Type="int" Nullable="false" />
+          <Property Name="檢舉Report" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影圖片MovieIImagesList">
+          <Key>
+            <PropertyRef Name="電影圖片編號MI_ID" />
+          </Key>
+          <Property Name="電影圖片編號MI_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="圖片編號Image_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影圖片總表MovieImages">
+          <Key>
+            <PropertyRef Name="圖片編號Image_ID" />
+          </Key>
+          <Property Name="圖片編號Image_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="圖片Image" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影語言MovieLanguage">
+          <Key>
+            <PropertyRef Name="語言編號Language_ID" />
+          </Key>
+          <Property Name="語言編號Language_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="語言名稱Language_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="電影導演MovieDirector">
+          <Key>
+            <PropertyRef Name="電影導演編號MD_ID" />
+          </Key>
+          <Property Name="電影導演編號MD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="int" Nullable="false" />
+          <Property Name="導演編號Director_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="對象Targets">
+          <Key>
+            <PropertyRef Name="對象Target_ID" />
+          </Key>
+          <Property Name="對象Target_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="對象名稱Target_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="演員總表Actors">
+          <Key>
+            <PropertyRef Name="演員編號Actors_ID" />
+          </Key>
+          <Property Name="演員編號Actors_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="中文名字Name_Cht" Type="nvarchar" MaxLength="20" />
+          <Property Name="英文名字Name_Eng" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="演員照片Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="影城MainTheater">
+          <Key>
+            <PropertyRef Name="影城編號MainTheater_ID" />
+          </Key>
+          <Property Name="影城編號MainTheater_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="影城名稱MainTheater_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="影廳Cinema">
+          <Key>
+            <PropertyRef Name="影廳編號Cinema_ID" />
+          </Key>
+          <Property Name="影廳編號Cinema_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="影廳名稱Cinema_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="電影院編號Theater_ID" Type="int" Nullable="false" />
+          <Property Name="廳種名稱Cinema_Cls_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="座位資訊SeatInfo" Type="varchar(max)" Nullable="false" />
+          <Property Name="影廳照片Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="標籤明細HashtagsList">
+          <Key>
+            <PropertyRef Name="標籤明細編號CH_ID" />
+          </Key>
+          <Property Name="標籤明細編號CH_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="評論編號Comment_ID" Type="int" Nullable="false" />
+          <Property Name="標籤編號Hashtag_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="標籤總表Hashtags">
+          <Key>
+            <PropertyRef Name="標籤編號Hashtag_ID" />
+          </Key>
+          <Property Name="標籤編號Hashtag_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="標籤Hashtag" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="導演總表Director">
+          <Key>
+            <PropertyRef Name="導演編號Director_ID" />
+          </Key>
+          <Property Name="導演編號Director_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="中文名字Name_Cht" Type="nvarchar" MaxLength="50" />
+          <Property Name="英文名字Name_Eng" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="導演照片Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="優惠明細CouponLists">
+          <Key>
+            <PropertyRef Name="優惠明細編號CouponList_ID" />
+          </Key>
+          <Property Name="優惠明細編號CouponList_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="int" Nullable="false" />
+          <Property Name="優惠編號Coupon_ID" Type="int" Nullable="false" />
+          <Property Name="是否使用優惠OX_CouponUsing" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="優惠總表Coupon">
+          <Key>
+            <PropertyRef Name="優惠編號Coupon_ID" />
+          </Key>
+          <Property Name="優惠編號Coupon_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="優惠名稱Coupon_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="優惠折扣CouponDiscount" Type="money" Nullable="false" />
+          <Property Name="優惠代碼Coupon_Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="優惠截止日期CouponDueDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="優惠所需紅利BonusCost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="購買商品明細Receipt">
+          <Key>
+            <PropertyRef Name="購買商品明細編號Receipt_ID" />
+          </Key>
+          <Property Name="購買商品明細編號Receipt_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="訂單編號Order_ID" Type="int" Nullable="false" />
+          <Property Name="商品編號Product_ID" Type="int" Nullable="false" />
+          <Property Name="商品數量Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_主演 Cast_演員 Actors">
+          <End Role="演員總表Actors" Type="Self.演員總表Actors" Multiplicity="1" />
+          <End Role="電影主演Cast" Type="Self.電影主演Cast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="演員總表Actors">
+              <PropertyRef Name="演員編號Actors_ID" />
+            </Principal>
+            <Dependent Role="電影主演Cast">
+              <PropertyRef Name="演員編號Actor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_出售座位明細SeatSold_訂單總表Orders">
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="1" />
+          <End Role="出售座位明細SeatSold" Type="Self.出售座位明細SeatSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單總表Orders">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Principal>
+            <Dependent Role="出售座位明細SeatSold">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_出售座位明細SeatSold_場次Screening">
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="1" />
+          <End Role="出售座位明細SeatSold" Type="Self.出售座位明細SeatSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="場次Screening">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Principal>
+            <Dependent Role="出售座位明細SeatSold">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_出售座位狀態SeatStatus_場次Screening">
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="1" />
+          <End Role="出售座位狀態SeatStatus" Type="Self.出售座位狀態SeatStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="場次Screening">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Principal>
+            <Dependent Role="出售座位狀態SeatStatus">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_回覆樓數 Floor_電影評論 Movie Comment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="回覆樓數Floor" Type="Self.回覆樓數Floor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="回覆樓數Floor">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_次片種總表Types_片種總表TotalTypes">
+          <End Role="片種總表TotalTypes" Type="Self.片種總表TotalTypes" Multiplicity="1" />
+          <End Role="次片種總表Types" Type="Self.次片種總表Types" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="片種總表TotalTypes">
+              <PropertyRef Name="片種編號TotalType_ID" />
+            </Principal>
+            <Dependent Role="次片種總表Types">
+              <PropertyRef Name="片種編號TotalType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的片單MyMovieLists_片單總表MovieLists">
+          <End Role="片單總表MovieLists" Type="Self.片單總表MovieLists" Multiplicity="1" />
+          <End Role="我的片單MyMovieLists" Type="Self.我的片單MyMovieLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="片單總表MovieLists">
+              <PropertyRef Name="片單總表編號MovieList_ID" />
+            </Principal>
+            <Dependent Role="我的片單MyMovieLists">
+              <PropertyRef Name="片單總表編號MovieList_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的片單MyMovieLists_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="我的片單MyMovieLists" Type="Self.我的片單MyMovieLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="我的片單MyMovieLists">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的片單MyMovieLists_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="我的片單MyMovieLists" Type="Self.我的片單MyMovieLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="我的片單MyMovieLists">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_回覆樓數Floor">
+          <End Role="回覆樓數Floor" Type="Self.回覆樓數Floor" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="回覆樓數Floor">
+              <PropertyRef Name="樓數編號Floor_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="連接編號Connect_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes">
+          <End Role="追讚倒ActionTypes" Type="Self.追讚倒ActionTypes" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="追讚倒ActionTypes">
+              <PropertyRef Name="追讚倒編號ActionType_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="追讚倒編號ActionType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_電影評論MovieComment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="連接編號Connect_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_對象Targets">
+          <End Role="對象Targets" Type="Self.對象Targets" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="對象Targets">
+              <PropertyRef Name="對象Target_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="對象Target_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單明細OrderDetail_訂單總表Orders">
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="1" />
+          <End Role="訂單明細OrderDetail" Type="Self.訂單明細OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單總表Orders">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Principal>
+            <Dependent Role="訂單明細OrderDetail">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單明細OrderDetail_票價資訊TicketPrice">
+          <End Role="票價資訊TicketPrice" Type="Self.票價資訊TicketPrice" Multiplicity="1" />
+          <End Role="訂單明細OrderDetail" Type="Self.訂單明細OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="票價資訊TicketPrice">
+              <PropertyRef Name="票價明細Ticket_ID" />
+            </Principal>
+            <Dependent Role="訂單明細OrderDetail">
+              <PropertyRef Name="票價明細Ticket_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_訂單狀態OrderStatus">
+          <End Role="訂單狀態OrderStatus" Type="Self.訂單狀態OrderStatus" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單狀態OrderStatus">
+              <PropertyRef Name="訂單狀態編號OrderStatus_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="訂單狀態編號OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_場次Screening">
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="場次Screening">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_優惠明細BonusLists">
+          <End Role="優惠明細CouponLists" Type="Self.優惠明細CouponLists" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="優惠明細CouponLists">
+              <PropertyRef Name="優惠明細編號CouponList_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="優惠明細編號CouponList_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_商品資料Products_電影院Theater">
+          <End Role="電影院Theater" Type="Self.電影院Theater" Multiplicity="1" />
+          <End Role="商品資料Products" Type="Self.商品資料Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影院Theater">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Principal>
+            <Dependent Role="商品資料Products">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_票價資訊TicketPrice_票種TicketType">
+          <End Role="票種TicketType" Type="Self.票種TicketType" Multiplicity="1" />
+          <End Role="票價資訊TicketPrice" Type="Self.票價資訊TicketPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="票種TicketType">
+              <PropertyRef Name="票種編號TicketType_ID" />
+            </Principal>
+            <Dependent Role="票價資訊TicketPrice">
+              <PropertyRef Name="票種編號TicketType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_票價資訊TicketPrice_影城MainTheater">
+          <End Role="影城MainTheater" Type="Self.影城MainTheater" Multiplicity="1" />
+          <End Role="票價資訊TicketPrice" Type="Self.票價資訊TicketPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="影城MainTheater">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Principal>
+            <Dependent Role="票價資訊TicketPrice">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_場次 Screening_電影代碼 Movie Code">
+          <End Role="電影代碼MovieCode" Type="Self.電影代碼MovieCode" Multiplicity="1" />
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影代碼MovieCode">
+              <PropertyRef Name="電影代碼編號MovieCode_ID int" />
+            </Principal>
+            <Dependent Role="場次Screening">
+              <PropertyRef Name="電影代碼Movie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_場次 Screening_影廳 Cinema">
+          <End Role="影廳Cinema" Type="Self.影廳Cinema" Multiplicity="1" />
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="影廳Cinema">
+              <PropertyRef Name="影廳編號Cinema_ID" />
+            </Principal>
+            <Dependent Role="場次Screening">
+              <PropertyRef Name="影廳編號Cinema_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_評論圖片明細CommandImagesList_評論圖庫CommandImages">
+          <End Role="評論圖片總表CommentImages" Type="Self.評論圖片總表CommentImages" Multiplicity="1" />
+          <End Role="評論圖片明細CommentImagesList" Type="Self.評論圖片明細CommentImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="評論圖片總表CommentImages">
+              <PropertyRef Name="評論圖庫編號CommentImage_ID" />
+            </Principal>
+            <Dependent Role="評論圖片明細CommentImagesList">
+              <PropertyRef Name="評論圖庫編號CommentImage_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_評論圖片明細CommandImagesList_電影評論MovieComment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="評論圖片明細CommentImagesList" Type="Self.評論圖片明細CommentImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="評論圖片明細CommentImagesList">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影 Movies_系列電影 Movie Series">
+          <End Role="系列電影MovieSeries" Type="Self.系列電影MovieSeries" Multiplicity="0..1" />
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="系列電影MovieSeries">
+              <PropertyRef Name="系列編號Series_ID" />
+            </Principal>
+            <Dependent Role="電影Movies">
+              <PropertyRef Name="系列編號Series_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影Movies_電影分級MovieRating">
+          <End Role="電影分級MovieRating" Type="Self.電影分級MovieRating" Multiplicity="1" />
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影分級MovieRating">
+              <PropertyRef Name="分級編號Rating_ID" />
+            </Principal>
+            <Dependent Role="電影Movies">
+              <PropertyRef Name="電影分級編號Rating_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影片種 Movie Type_片種總表 Types">
+          <End Role="次片種總表Types" Type="Self.次片種總表Types" Multiplicity="1" />
+          <End Role="電影片種MovieType" Type="Self.電影片種MovieType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="次片種總表Types">
+              <PropertyRef Name="次片種編號Type_ID" />
+            </Principal>
+            <Dependent Role="電影片種MovieType">
+              <PropertyRef Name="片種編號Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影片種MovieType_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影片種MovieType" Type="Self.電影片種MovieType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影片種MovieType">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影主演Cast_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影主演Cast" Type="Self.電影主演Cast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影主演Cast">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影代碼 Movie Code_電影語言 Movie Language">
+          <End Role="電影語言MovieLanguage" Type="Self.電影語言MovieLanguage" Multiplicity="1" />
+          <End Role="電影代碼MovieCode" Type="Self.電影代碼MovieCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影語言MovieLanguage">
+              <PropertyRef Name="語言編號Language_ID" />
+            </Principal>
+            <Dependent Role="電影代碼MovieCode">
+              <PropertyRef Name="語言編號Language_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影代碼MovieCode_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影代碼MovieCode" Type="Self.電影代碼MovieCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影代碼MovieCode">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影院Theater_影城MainTheater">
+          <End Role="影城MainTheater" Type="Self.影城MainTheater" Multiplicity="1" />
+          <End Role="電影院Theater" Type="Self.電影院Theater" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="影城MainTheater">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Principal>
+            <Dependent Role="電影院Theater">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影產地 Movie Origin_國家總表 Countrys">
+          <End Role="國家總表Countrys" Type="Self.國家總表Countrys" Multiplicity="1" />
+          <End Role="電影產地MovieOrigin" Type="Self.電影產地MovieOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="國家總表Countrys">
+              <PropertyRef Name="國家編號Country_ID" />
+            </Principal>
+            <Dependent Role="電影產地MovieOrigin">
+              <PropertyRef Name="國家編號Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影產地MovieOrigin_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影產地MovieOrigin" Type="Self.電影產地MovieOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影產地MovieOrigin">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影評論MovieComment_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影評論MovieComment">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影圖片MovieIImages_圖片總表Images">
+          <End Role="電影圖片總表MovieImages" Type="Self.電影圖片總表MovieImages" Multiplicity="1" />
+          <End Role="電影圖片MovieIImagesList" Type="Self.電影圖片MovieIImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影圖片總表MovieImages">
+              <PropertyRef Name="圖片編號Image_ID" />
+            </Principal>
+            <Dependent Role="電影圖片MovieIImagesList">
+              <PropertyRef Name="圖片編號Image_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影圖片MovieIImagesList_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影圖片MovieIImagesList" Type="Self.電影圖片MovieIImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影圖片MovieIImagesList">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影導演 Movie_Director_導演總表 Director">
+          <End Role="導演總表Director" Type="Self.導演總表Director" Multiplicity="1" />
+          <End Role="電影導演MovieDirector" Type="Self.電影導演MovieDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="導演總表Director">
+              <PropertyRef Name="導演編號Director_ID" />
+            </Principal>
+            <Dependent Role="電影導演MovieDirector">
+              <PropertyRef Name="導演編號Director_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影導演MovieDirector_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影導演MovieDirector" Type="Self.電影導演MovieDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影導演MovieDirector">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_影廳 Cinema_電影院 Theater">
+          <End Role="電影院Theater" Type="Self.電影院Theater" Multiplicity="1" />
+          <End Role="影廳Cinema" Type="Self.影廳Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影院Theater">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Principal>
+            <Dependent Role="影廳Cinema">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_標籤明細_電影評論MovieComment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="標籤明細HashtagsList" Type="Self.標籤明細HashtagsList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="標籤明細HashtagsList">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_標籤明細_標籤總表Hashtag">
+          <End Role="標籤總表Hashtags" Type="Self.標籤總表Hashtags" Multiplicity="1" />
+          <End Role="標籤明細HashtagsList" Type="Self.標籤明細HashtagsList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="標籤總表Hashtags">
+              <PropertyRef Name="標籤編號Hashtag_ID" />
+            </Principal>
+            <Dependent Role="標籤明細HashtagsList">
+              <PropertyRef Name="標籤編號Hashtag_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_優惠明細BonusLists_優惠總表Bonus">
+          <End Role="優惠總表Coupon" Type="Self.優惠總表Coupon" Multiplicity="1" />
+          <End Role="優惠明細CouponLists" Type="Self.優惠明細CouponLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="優惠總表Coupon">
+              <PropertyRef Name="優惠編號Coupon_ID" />
+            </Principal>
+            <Dependent Role="優惠明細CouponLists">
+              <PropertyRef Name="優惠編號Coupon_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_優惠明細CouponLists_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="優惠明細CouponLists" Type="Self.優惠明細CouponLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="優惠明細CouponLists">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_購買商品明細Receipt_訂單總表Orders">
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="1" />
+          <End Role="購買商品明細Receipt" Type="Self.購買商品明細Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單總表Orders">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Principal>
+            <Dependent Role="購買商品明細Receipt">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_購買商品明細Receipt_商品資料Products">
+          <End Role="商品資料Products" Type="Self.商品資料Products" Multiplicity="1" />
+          <End Role="購買商品明細Receipt" Type="Self.購買商品明細Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="商品資料Products">
+              <PropertyRef Name="商品編號Product_ID" />
+            </Principal>
+            <Dependent Role="購買商品明細Receipt">
+              <PropertyRef Name="商品編號Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MDAModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="片單總表MovieLists" EntityType="Self.片單總表MovieLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="片種總表TotalTypes" EntityType="Self.片種總表TotalTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="出售座位明細SeatSold" EntityType="Self.出售座位明細SeatSold" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="出售座位狀態SeatStatus" EntityType="Self.出售座位狀態SeatStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="回覆樓數Floor" EntityType="Self.回覆樓數Floor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="次片種總表Types" EntityType="Self.次片種總表Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="我的片單MyMovieLists" EntityType="Self.我的片單MyMovieLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="我的追蹤清單MyFollowLists" EntityType="Self.我的追蹤清單MyFollowLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="系列電影MovieSeries" EntityType="Self.系列電影MovieSeries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="訂單明細OrderDetail" EntityType="Self.訂單明細OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="訂單狀態OrderStatus" EntityType="Self.訂單狀態OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="訂單總表Orders" EntityType="Self.訂單總表Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="追讚倒ActionTypes" EntityType="Self.追讚倒ActionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="商品資料Products" EntityType="Self.商品資料Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="國家總表Countrys" EntityType="Self.國家總表Countrys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="票種TicketType" EntityType="Self.票種TicketType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="票價資訊TicketPrice" EntityType="Self.票價資訊TicketPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="場次Screening" EntityType="Self.場次Screening" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="評論圖片明細CommentImagesList" EntityType="Self.評論圖片明細CommentImagesList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="評論圖片總表CommentImages" EntityType="Self.評論圖片總表CommentImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="會員Members" EntityType="Self.會員Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影Movies" EntityType="Self.電影Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影分級MovieRating" EntityType="Self.電影分級MovieRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影片種MovieType" EntityType="Self.電影片種MovieType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影主演Cast" EntityType="Self.電影主演Cast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影代碼MovieCode" EntityType="Self.電影代碼MovieCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影院Theater" EntityType="Self.電影院Theater" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影產地MovieOrigin" EntityType="Self.電影產地MovieOrigin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影評論MovieComment" EntityType="Self.電影評論MovieComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影圖片MovieIImagesList" EntityType="Self.電影圖片MovieIImagesList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影圖片總表MovieImages" EntityType="Self.電影圖片總表MovieImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影語言MovieLanguage" EntityType="Self.電影語言MovieLanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="電影導演MovieDirector" EntityType="Self.電影導演MovieDirector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="對象Targets" EntityType="Self.對象Targets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="演員總表Actors" EntityType="Self.演員總表Actors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="影城MainTheater" EntityType="Self.影城MainTheater" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="影廳Cinema" EntityType="Self.影廳Cinema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="標籤明細HashtagsList" EntityType="Self.標籤明細HashtagsList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="標籤總表Hashtags" EntityType="Self.標籤總表Hashtags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="導演總表Director" EntityType="Self.導演總表Director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="優惠明細CouponLists" EntityType="Self.優惠明細CouponLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="優惠總表Coupon" EntityType="Self.優惠總表Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="購買商品明細Receipt" EntityType="Self.購買商品明細Receipt" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_主演 Cast_演員 Actors" Association="Self.FK_主演 Cast_演員 Actors">
+            <End Role="演員總表Actors" EntitySet="演員總表Actors" />
+            <End Role="電影主演Cast" EntitySet="電影主演Cast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_出售座位明細SeatSold_訂單總表Orders" Association="Self.FK_出售座位明細SeatSold_訂單總表Orders">
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+            <End Role="出售座位明細SeatSold" EntitySet="出售座位明細SeatSold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_出售座位明細SeatSold_場次Screening" Association="Self.FK_出售座位明細SeatSold_場次Screening">
+            <End Role="場次Screening" EntitySet="場次Screening" />
+            <End Role="出售座位明細SeatSold" EntitySet="出售座位明細SeatSold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_出售座位狀態SeatStatus_場次Screening" Association="Self.FK_出售座位狀態SeatStatus_場次Screening">
+            <End Role="場次Screening" EntitySet="場次Screening" />
+            <End Role="出售座位狀態SeatStatus" EntitySet="出售座位狀態SeatStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_回覆樓數 Floor_電影評論 Movie Comment" Association="Self.FK_回覆樓數 Floor_電影評論 Movie Comment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="回覆樓數Floor" EntitySet="回覆樓數Floor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_次片種總表Types_片種總表TotalTypes" Association="Self.FK_次片種總表Types_片種總表TotalTypes">
+            <End Role="片種總表TotalTypes" EntitySet="片種總表TotalTypes" />
+            <End Role="次片種總表Types" EntitySet="次片種總表Types" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的片單MyMovieLists_片單總表MovieLists" Association="Self.FK_我的片單MyMovieLists_片單總表MovieLists">
+            <End Role="片單總表MovieLists" EntitySet="片單總表MovieLists" />
+            <End Role="我的片單MyMovieLists" EntitySet="我的片單MyMovieLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的片單MyMovieLists_會員Members" Association="Self.FK_我的片單MyMovieLists_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="我的片單MyMovieLists" EntitySet="我的片單MyMovieLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的片單MyMovieLists_電影Movies" Association="Self.FK_我的片單MyMovieLists_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="我的片單MyMovieLists" EntitySet="我的片單MyMovieLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_回覆樓數Floor" Association="Self.FK_我的追蹤清單MyFollowLists_回覆樓數Floor">
+            <End Role="回覆樓數Floor" EntitySet="回覆樓數Floor" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes" Association="Self.FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes">
+            <End Role="追讚倒ActionTypes" EntitySet="追讚倒ActionTypes" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_會員Members" Association="Self.FK_我的追蹤清單MyFollowLists_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_電影評論MovieComment" Association="Self.FK_我的追蹤清單MyFollowLists_電影評論MovieComment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_對象Targets" Association="Self.FK_我的追蹤清單MyFollowLists_對象Targets">
+            <End Role="對象Targets" EntitySet="對象Targets" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單明細OrderDetail_訂單總表Orders" Association="Self.FK_訂單明細OrderDetail_訂單總表Orders">
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+            <End Role="訂單明細OrderDetail" EntitySet="訂單明細OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單明細OrderDetail_票價資訊TicketPrice" Association="Self.FK_訂單明細OrderDetail_票價資訊TicketPrice">
+            <End Role="票價資訊TicketPrice" EntitySet="票價資訊TicketPrice" />
+            <End Role="訂單明細OrderDetail" EntitySet="訂單明細OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_訂單狀態OrderStatus" Association="Self.FK_訂單總表Orders_訂單狀態OrderStatus">
+            <End Role="訂單狀態OrderStatus" EntitySet="訂單狀態OrderStatus" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_場次Screening" Association="Self.FK_訂單總表Orders_場次Screening">
+            <End Role="場次Screening" EntitySet="場次Screening" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_會員Members" Association="Self.FK_訂單總表Orders_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_優惠明細BonusLists" Association="Self.FK_訂單總表Orders_優惠明細BonusLists">
+            <End Role="優惠明細CouponLists" EntitySet="優惠明細CouponLists" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_商品資料Products_電影院Theater" Association="Self.FK_商品資料Products_電影院Theater">
+            <End Role="電影院Theater" EntitySet="電影院Theater" />
+            <End Role="商品資料Products" EntitySet="商品資料Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_票價資訊TicketPrice_票種TicketType" Association="Self.FK_票價資訊TicketPrice_票種TicketType">
+            <End Role="票種TicketType" EntitySet="票種TicketType" />
+            <End Role="票價資訊TicketPrice" EntitySet="票價資訊TicketPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_票價資訊TicketPrice_影城MainTheater" Association="Self.FK_票價資訊TicketPrice_影城MainTheater">
+            <End Role="影城MainTheater" EntitySet="影城MainTheater" />
+            <End Role="票價資訊TicketPrice" EntitySet="票價資訊TicketPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_場次 Screening_電影代碼 Movie Code" Association="Self.FK_場次 Screening_電影代碼 Movie Code">
+            <End Role="電影代碼MovieCode" EntitySet="電影代碼MovieCode" />
+            <End Role="場次Screening" EntitySet="場次Screening" />
+          </AssociationSet>
+          <AssociationSet Name="FK_場次 Screening_影廳 Cinema" Association="Self.FK_場次 Screening_影廳 Cinema">
+            <End Role="影廳Cinema" EntitySet="影廳Cinema" />
+            <End Role="場次Screening" EntitySet="場次Screening" />
+          </AssociationSet>
+          <AssociationSet Name="FK_評論圖片明細CommandImagesList_評論圖庫CommandImages" Association="Self.FK_評論圖片明細CommandImagesList_評論圖庫CommandImages">
+            <End Role="評論圖片總表CommentImages" EntitySet="評論圖片總表CommentImages" />
+            <End Role="評論圖片明細CommentImagesList" EntitySet="評論圖片明細CommentImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_評論圖片明細CommandImagesList_電影評論MovieComment" Association="Self.FK_評論圖片明細CommandImagesList_電影評論MovieComment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="評論圖片明細CommentImagesList" EntitySet="評論圖片明細CommentImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影 Movies_系列電影 Movie Series" Association="Self.FK_電影 Movies_系列電影 Movie Series">
+            <End Role="系列電影MovieSeries" EntitySet="系列電影MovieSeries" />
+            <End Role="電影Movies" EntitySet="電影Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影Movies_電影分級MovieRating" Association="Self.FK_電影Movies_電影分級MovieRating">
+            <End Role="電影分級MovieRating" EntitySet="電影分級MovieRating" />
+            <End Role="電影Movies" EntitySet="電影Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影片種 Movie Type_片種總表 Types" Association="Self.FK_電影片種 Movie Type_片種總表 Types">
+            <End Role="次片種總表Types" EntitySet="次片種總表Types" />
+            <End Role="電影片種MovieType" EntitySet="電影片種MovieType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影片種MovieType_電影Movies" Association="Self.FK_電影片種MovieType_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影片種MovieType" EntitySet="電影片種MovieType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影主演Cast_電影Movies" Association="Self.FK_電影主演Cast_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影主演Cast" EntitySet="電影主演Cast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影代碼 Movie Code_電影語言 Movie Language" Association="Self.FK_電影代碼 Movie Code_電影語言 Movie Language">
+            <End Role="電影語言MovieLanguage" EntitySet="電影語言MovieLanguage" />
+            <End Role="電影代碼MovieCode" EntitySet="電影代碼MovieCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影代碼MovieCode_電影Movies" Association="Self.FK_電影代碼MovieCode_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影代碼MovieCode" EntitySet="電影代碼MovieCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影院Theater_影城MainTheater" Association="Self.FK_電影院Theater_影城MainTheater">
+            <End Role="影城MainTheater" EntitySet="影城MainTheater" />
+            <End Role="電影院Theater" EntitySet="電影院Theater" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影產地 Movie Origin_國家總表 Countrys" Association="Self.FK_電影產地 Movie Origin_國家總表 Countrys">
+            <End Role="國家總表Countrys" EntitySet="國家總表Countrys" />
+            <End Role="電影產地MovieOrigin" EntitySet="電影產地MovieOrigin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影產地MovieOrigin_電影Movies" Association="Self.FK_電影產地MovieOrigin_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影產地MovieOrigin" EntitySet="電影產地MovieOrigin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影評論MovieComment_電影Movies" Association="Self.FK_電影評論MovieComment_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影圖片MovieIImages_圖片總表Images" Association="Self.FK_電影圖片MovieIImages_圖片總表Images">
+            <End Role="電影圖片總表MovieImages" EntitySet="電影圖片總表MovieImages" />
+            <End Role="電影圖片MovieIImagesList" EntitySet="電影圖片MovieIImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影圖片MovieIImagesList_電影Movies" Association="Self.FK_電影圖片MovieIImagesList_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影圖片MovieIImagesList" EntitySet="電影圖片MovieIImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影導演 Movie_Director_導演總表 Director" Association="Self.FK_電影導演 Movie_Director_導演總表 Director">
+            <End Role="導演總表Director" EntitySet="導演總表Director" />
+            <End Role="電影導演MovieDirector" EntitySet="電影導演MovieDirector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影導演MovieDirector_電影Movies" Association="Self.FK_電影導演MovieDirector_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影導演MovieDirector" EntitySet="電影導演MovieDirector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_影廳 Cinema_電影院 Theater" Association="Self.FK_影廳 Cinema_電影院 Theater">
+            <End Role="電影院Theater" EntitySet="電影院Theater" />
+            <End Role="影廳Cinema" EntitySet="影廳Cinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_標籤明細_電影評論MovieComment" Association="Self.FK_標籤明細_電影評論MovieComment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="標籤明細HashtagsList" EntitySet="標籤明細HashtagsList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_標籤明細_標籤總表Hashtag" Association="Self.FK_標籤明細_標籤總表Hashtag">
+            <End Role="標籤總表Hashtags" EntitySet="標籤總表Hashtags" />
+            <End Role="標籤明細HashtagsList" EntitySet="標籤明細HashtagsList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_優惠明細BonusLists_優惠總表Bonus" Association="Self.FK_優惠明細BonusLists_優惠總表Bonus">
+            <End Role="優惠總表Coupon" EntitySet="優惠總表Coupon" />
+            <End Role="優惠明細CouponLists" EntitySet="優惠明細CouponLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_優惠明細CouponLists_會員Members" Association="Self.FK_優惠明細CouponLists_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="優惠明細CouponLists" EntitySet="優惠明細CouponLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_購買商品明細Receipt_訂單總表Orders" Association="Self.FK_購買商品明細Receipt_訂單總表Orders">
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+            <End Role="購買商品明細Receipt" EntitySet="購買商品明細Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_購買商品明細Receipt_商品資料Products" Association="Self.FK_購買商品明細Receipt_商品資料Products">
+            <End Role="商品資料Products" EntitySet="商品資料Products" />
+            <End Role="購買商品明細Receipt" EntitySet="購買商品明細Receipt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="片單總表MovieLists">
+          <Key>
+            <PropertyRef Name="片單總表編號MovieList_ID" />
+          </Key>
+          <Property Name="片單總表編號MovieList_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="片單總表名稱List_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="我的片單MyMovieLists" Relationship="Self.FK_我的片單MyMovieLists_片單總表MovieLists" FromRole="片單總表MovieLists" ToRole="我的片單MyMovieLists" />
+        </EntityType>
+        <EntityType Name="片種總表TotalTypes">
+          <Key>
+            <PropertyRef Name="片種編號TotalType_ID" />
+          </Key>
+          <Property Name="片種編號TotalType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="片種名稱TotalType_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="次片種總表Types" Relationship="Self.FK_次片種總表Types_片種總表TotalTypes" FromRole="片種總表TotalTypes" ToRole="次片種總表Types" />
+        </EntityType>
+        <EntityType Name="出售座位明細SeatSold">
+          <Key>
+            <PropertyRef Name="出售明細編號Sold_ID" />
+          </Key>
+          <Property Name="訂單編號Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="出售明細編號Sold_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="場次編號Screening_ID" Type="Int32" Nullable="false" />
+          <Property Name="座位表編號Seat_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_出售座位明細SeatSold_訂單總表Orders" FromRole="出售座位明細SeatSold" ToRole="訂單總表Orders" />
+          <NavigationProperty Name="場次Screening" Relationship="Self.FK_出售座位明細SeatSold_場次Screening" FromRole="出售座位明細SeatSold" ToRole="場次Screening" />
+        </EntityType>
+        <EntityType Name="出售座位狀態SeatStatus">
+          <Key>
+            <PropertyRef Name="出售座位編號Seat_ID" />
+          </Key>
+          <Property Name="出售座位編號Seat_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="場次編號Screening_ID" Type="Int32" Nullable="false" />
+          <Property Name="出售座位資訊SeatSoldInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="場次Screening" Relationship="Self.FK_出售座位狀態SeatStatus_場次Screening" FromRole="出售座位狀態SeatStatus" ToRole="場次Screening" />
+        </EntityType>
+        <EntityType Name="回覆樓數Floor">
+          <Key>
+            <PropertyRef Name="樓數編號Floor_ID" />
+          </Key>
+          <Property Name="樓數編號Floor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="評論編號Comment_ID" Type="Int32" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <Property Name="回覆內容Floors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="發佈時間Floor_Time" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="被按讚次數Thumbs_Up" Type="Int32" />
+          <Property Name="被倒讚次數Thumbs_Down" Type="Int32" />
+          <Property Name="屏蔽Invisible" Type="Int32" Nullable="false" />
+          <Property Name="檢舉Report" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="電影評論MovieComment" Relationship="Self.FK_回覆樓數_Floor_電影評論_Movie_Comment" FromRole="回覆樓數Floor" ToRole="電影評論MovieComment" />
+          <NavigationProperty Name="我的追蹤清單MyFollowLists" Relationship="Self.FK_我的追蹤清單MyFollowLists_回覆樓數Floor" FromRole="回覆樓數Floor" ToRole="我的追蹤清單MyFollowLists" />
+        </EntityType>
+        <EntityType Name="次片種總表Types">
+          <Key>
+            <PropertyRef Name="次片種編號Type_ID" />
+          </Key>
+          <Property Name="片種編號TotalType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="次片種編號Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="次片種名稱Type_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="片種總表TotalTypes" Relationship="Self.FK_次片種總表Types_片種總表TotalTypes" FromRole="次片種總表Types" ToRole="片種總表TotalTypes" />
+          <NavigationProperty Name="電影片種MovieType" Relationship="Self.FK_電影片種_Movie_Type_片種總表_Types" FromRole="次片種總表Types" ToRole="電影片種MovieType" />
+        </EntityType>
+        <EntityType Name="我的片單MyMovieLists">
+          <Key>
+            <PropertyRef Name="我的片單MyMovieList_ID" />
+          </Key>
+          <Property Name="我的片單MyMovieList_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="片單總表編號MovieList_ID" Type="Int32" Nullable="false" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="片單總表MovieLists" Relationship="Self.FK_我的片單MyMovieLists_片單總表MovieLists" FromRole="我的片單MyMovieLists" ToRole="片單總表MovieLists" />
+          <NavigationProperty Name="會員Members" Relationship="Self.FK_我的片單MyMovieLists_會員Members" FromRole="我的片單MyMovieLists" ToRole="會員Members" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_我的片單MyMovieLists_電影Movies" FromRole="我的片單MyMovieLists" ToRole="電影Movies" />
+        </EntityType>
+        <EntityType Name="我的追蹤清單MyFollowLists">
+          <Key>
+            <PropertyRef Name="我的追蹤清單編號CF_ID" />
+          </Key>
+          <Property Name="我的追蹤清單編號CF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <Property Name="對象Target_ID" Type="Int32" Nullable="false" />
+          <Property Name="追讚倒編號ActionType_ID" Type="Int32" Nullable="false" />
+          <Property Name="連接編號Connect_ID" Type="Int32" Nullable="false" />
+          <Property Name="檢舉理由ReportReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="回覆樓數Floor" Relationship="Self.FK_我的追蹤清單MyFollowLists_回覆樓數Floor" FromRole="我的追蹤清單MyFollowLists" ToRole="回覆樓數Floor" />
+          <NavigationProperty Name="追讚倒ActionTypes" Relationship="Self.FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes" FromRole="我的追蹤清單MyFollowLists" ToRole="追讚倒ActionTypes" />
+          <NavigationProperty Name="會員Members" Relationship="Self.FK_我的追蹤清單MyFollowLists_會員Members" FromRole="我的追蹤清單MyFollowLists" ToRole="會員Members" />
+          <NavigationProperty Name="電影評論MovieComment" Relationship="Self.FK_我的追蹤清單MyFollowLists_電影評論MovieComment" FromRole="我的追蹤清單MyFollowLists" ToRole="電影評論MovieComment" />
+          <NavigationProperty Name="對象Targets" Relationship="Self.FK_我的追蹤清單MyFollowLists_對象Targets" FromRole="我的追蹤清單MyFollowLists" ToRole="對象Targets" />
+        </EntityType>
+        <EntityType Name="系列電影MovieSeries">
+          <Key>
+            <PropertyRef Name="系列編號Series_ID" />
+          </Key>
+          <Property Name="系列編號Series_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="系列名稱Series_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影_Movies_系列電影_Movie_Series" FromRole="系列電影MovieSeries" ToRole="電影Movies" />
+        </EntityType>
+        <EntityType Name="訂單明細OrderDetail">
+          <Key>
+            <PropertyRef Name="訂單明細編號OrderDetail_ID" />
+          </Key>
+          <Property Name="訂單編號Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="訂單明細編號OrderDetail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="票價明細Ticket_ID" Type="Int32" Nullable="false" />
+          <Property Name="張數Count" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_訂單明細OrderDetail_訂單總表Orders" FromRole="訂單明細OrderDetail" ToRole="訂單總表Orders" />
+          <NavigationProperty Name="票價資訊TicketPrice" Relationship="Self.FK_訂單明細OrderDetail_票價資訊TicketPrice" FromRole="訂單明細OrderDetail" ToRole="票價資訊TicketPrice" />
+        </EntityType>
+        <EntityType Name="訂單狀態OrderStatus">
+          <Key>
+            <PropertyRef Name="訂單狀態編號OrderStatus_ID" />
+          </Key>
+          <Property Name="訂單狀態編號OrderStatus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="訂單狀態OrderStatus_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_訂單總表Orders_訂單狀態OrderStatus" FromRole="訂單狀態OrderStatus" ToRole="訂單總表Orders" />
+        </EntityType>
+        <EntityType Name="訂單總表Orders">
+          <Key>
+            <PropertyRef Name="訂單編號Order_ID" />
+          </Key>
+          <Property Name="訂單編號Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <Property Name="訂單時間OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="場次編號Screening_ID" Type="Int32" Nullable="false" />
+          <Property Name="優惠明細編號CouponList_ID" Type="Int32" Nullable="false" />
+          <Property Name="訂單狀態編號OrderStatus_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="出售座位明細SeatSold" Relationship="Self.FK_出售座位明細SeatSold_訂單總表Orders" FromRole="訂單總表Orders" ToRole="出售座位明細SeatSold" />
+          <NavigationProperty Name="訂單明細OrderDetail" Relationship="Self.FK_訂單明細OrderDetail_訂單總表Orders" FromRole="訂單總表Orders" ToRole="訂單明細OrderDetail" />
+          <NavigationProperty Name="訂單狀態OrderStatus" Relationship="Self.FK_訂單總表Orders_訂單狀態OrderStatus" FromRole="訂單總表Orders" ToRole="訂單狀態OrderStatus" />
+          <NavigationProperty Name="場次Screening" Relationship="Self.FK_訂單總表Orders_場次Screening" FromRole="訂單總表Orders" ToRole="場次Screening" />
+          <NavigationProperty Name="會員Members" Relationship="Self.FK_訂單總表Orders_會員Members" FromRole="訂單總表Orders" ToRole="會員Members" />
+          <NavigationProperty Name="優惠明細CouponLists" Relationship="Self.FK_訂單總表Orders_優惠明細BonusLists" FromRole="訂單總表Orders" ToRole="優惠明細CouponLists" />
+          <NavigationProperty Name="購買商品明細Receipt" Relationship="Self.FK_購買商品明細Receipt_訂單總表Orders" FromRole="訂單總表Orders" ToRole="購買商品明細Receipt" />
+        </EntityType>
+        <EntityType Name="追讚倒ActionTypes">
+          <Key>
+            <PropertyRef Name="追讚倒編號ActionType_ID" />
+          </Key>
+          <Property Name="追讚倒編號ActionType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="追讚倒名稱ActionType_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="我的追蹤清單MyFollowLists" Relationship="Self.FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes" FromRole="追讚倒ActionTypes" ToRole="我的追蹤清單MyFollowLists" />
+        </EntityType>
+        <EntityType Name="商品資料Products">
+          <Key>
+            <PropertyRef Name="商品編號Product_ID" />
+          </Key>
+          <Property Name="商品編號Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="商品名稱Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="商品價格Product_Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="電影院編號Theater_ID" Type="Int32" Nullable="false" />
+          <Property Name="商品圖片Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="電影院Theater" Relationship="Self.FK_商品資料Products_電影院Theater" FromRole="商品資料Products" ToRole="電影院Theater" />
+          <NavigationProperty Name="購買商品明細Receipt" Relationship="Self.FK_購買商品明細Receipt_商品資料Products" FromRole="商品資料Products" ToRole="購買商品明細Receipt" />
+        </EntityType>
+        <EntityType Name="國家總表Countrys">
+          <Key>
+            <PropertyRef Name="國家編號Country_ID" />
+          </Key>
+          <Property Name="國家編號Country_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="國家名稱Country_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="國旗Country_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="電影產地MovieOrigin" Relationship="Self.FK_電影產地_Movie_Origin_國家總表_Countrys" FromRole="國家總表Countrys" ToRole="電影產地MovieOrigin" />
+        </EntityType>
+        <EntityType Name="票種TicketType">
+          <Key>
+            <PropertyRef Name="票種編號TicketType_ID" />
+          </Key>
+          <Property Name="票種編號TicketType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="票種名稱TicketType_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="票價資訊TicketPrice" Relationship="Self.FK_票價資訊TicketPrice_票種TicketType" FromRole="票種TicketType" ToRole="票價資訊TicketPrice" />
+        </EntityType>
+        <EntityType Name="票價資訊TicketPrice">
+          <Key>
+            <PropertyRef Name="票價明細Ticket_ID" />
+          </Key>
+          <Property Name="票價明細Ticket_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="影城編號MainTheater_ID" Type="Int32" Nullable="false" />
+          <Property Name="票種編號TicketType_ID" Type="Int32" Nullable="false" />
+          <Property Name="價格TicketPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="訂單明細OrderDetail" Relationship="Self.FK_訂單明細OrderDetail_票價資訊TicketPrice" FromRole="票價資訊TicketPrice" ToRole="訂單明細OrderDetail" />
+          <NavigationProperty Name="票種TicketType" Relationship="Self.FK_票價資訊TicketPrice_票種TicketType" FromRole="票價資訊TicketPrice" ToRole="票種TicketType" />
+          <NavigationProperty Name="影城MainTheater" Relationship="Self.FK_票價資訊TicketPrice_影城MainTheater" FromRole="票價資訊TicketPrice" ToRole="影城MainTheater" />
+        </EntityType>
+        <EntityType Name="場次Screening">
+          <Key>
+            <PropertyRef Name="場次編號Screening_ID" />
+          </Key>
+          <Property Name="場次編號Screening_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="影廳編號Cinema_ID" Type="Int32" Nullable="false" />
+          <Property Name="電影代碼Movie_Code" Type="Int32" Nullable="false" />
+          <Property Name="放映日期Play_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="放映開始時間Play_Time" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="出售座位明細SeatSold" Relationship="Self.FK_出售座位明細SeatSold_場次Screening" FromRole="場次Screening" ToRole="出售座位明細SeatSold" />
+          <NavigationProperty Name="出售座位狀態SeatStatus" Relationship="Self.FK_出售座位狀態SeatStatus_場次Screening" FromRole="場次Screening" ToRole="出售座位狀態SeatStatus" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_訂單總表Orders_場次Screening" FromRole="場次Screening" ToRole="訂單總表Orders" />
+          <NavigationProperty Name="電影代碼MovieCode" Relationship="Self.FK_場次_Screening_電影代碼_Movie_Code" FromRole="場次Screening" ToRole="電影代碼MovieCode" />
+          <NavigationProperty Name="影廳Cinema" Relationship="Self.FK_場次_Screening_影廳_Cinema" FromRole="場次Screening" ToRole="影廳Cinema" />
+        </EntityType>
+        <EntityType Name="評論圖片明細CommentImagesList">
+          <Key>
+            <PropertyRef Name="評論圖片編號CC_ID" />
+          </Key>
+          <Property Name="評論圖片編號CC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="評論圖庫編號CommentImage_ID" Type="Int32" Nullable="false" />
+          <Property Name="評論編號Comment_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="評論圖片總表CommentImages" Relationship="Self.FK_評論圖片明細CommandImagesList_評論圖庫CommandImages" FromRole="評論圖片明細CommentImagesList" ToRole="評論圖片總表CommentImages" />
+          <NavigationProperty Name="電影評論MovieComment" Relationship="Self.FK_評論圖片明細CommandImagesList_電影評論MovieComment" FromRole="評論圖片明細CommentImagesList" ToRole="電影評論MovieComment" />
+        </EntityType>
+        <EntityType Name="評論圖片總表CommentImages">
+          <Key>
+            <PropertyRef Name="評論圖庫編號CommentImage_ID" />
+          </Key>
+          <Property Name="評論圖庫編號CommentImage_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="圖片Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="屏蔽Invisible" Type="Int32" Nullable="false" />
+          <Property Name="檢舉Report" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="評論圖片明細CommentImagesList" Relationship="Self.FK_評論圖片明細CommandImagesList_評論圖庫CommandImages" FromRole="評論圖片總表CommentImages" ToRole="評論圖片明細CommentImagesList" />
+        </EntityType>
+        <EntityType Name="會員Members">
+          <Key>
+            <PropertyRef Name="會員編號Member_ID" />
+          </Key>
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員電話Cellphone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="密碼Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="姓氏L_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="名字F_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="暱稱NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="生日BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="性別Gender" Type="Int32" />
+          <Property Name="電子信箱Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="地址Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="紅利點數Bonus" Type="Int32" />
+          <Property Name="正式會員Formal" Type="Boolean" />
+          <Property Name="會員權限Permission" Type="Int32" />
+          <Property Name="會員照片Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="我的片單MyMovieLists" Relationship="Self.FK_我的片單MyMovieLists_會員Members" FromRole="會員Members" ToRole="我的片單MyMovieLists" />
+          <NavigationProperty Name="我的追蹤清單MyFollowLists" Relationship="Self.FK_我的追蹤清單MyFollowLists_會員Members" FromRole="會員Members" ToRole="我的追蹤清單MyFollowLists" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_訂單總表Orders_會員Members" FromRole="會員Members" ToRole="訂單總表Orders" />
+          <NavigationProperty Name="優惠明細CouponLists" Relationship="Self.FK_優惠明細CouponLists_會員Members" FromRole="會員Members" ToRole="優惠明細CouponLists" />
+        </EntityType>
+        <EntityType Name="電影Movies">
+          <Key>
+            <PropertyRef Name="電影編號Movie_ID" />
+          </Key>
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="系列編號Series_ID" Type="Int32" />
+          <Property Name="中文標題Title_Cht" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="英文標題Title_Eng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="上映年份Release_Year" Type="Int32" Nullable="false" />
+          <Property Name="上映日期Release_Date" Type="DateTime" Precision="0" />
+          <Property Name="片長Runtime" Type="Int32" Nullable="false" />
+          <Property Name="電影分級編號Rating_ID" Type="Int32" Nullable="false" />
+          <Property Name="評分Rate" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="期待度anticipation" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="票房BoxOffice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="劇情大綱Plot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="最後上映日期Released_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="我的片單MyMovieLists" Relationship="Self.FK_我的片單MyMovieLists_電影Movies" FromRole="電影Movies" ToRole="我的片單MyMovieLists" />
+          <NavigationProperty Name="系列電影MovieSeries" Relationship="Self.FK_電影_Movies_系列電影_Movie_Series" FromRole="電影Movies" ToRole="系列電影MovieSeries" />
+          <NavigationProperty Name="電影分級MovieRating" Relationship="Self.FK_電影Movies_電影分級MovieRating" FromRole="電影Movies" ToRole="電影分級MovieRating" />
+          <NavigationProperty Name="電影片種MovieType" Relationship="Self.FK_電影片種MovieType_電影Movies" FromRole="電影Movies" ToRole="電影片種MovieType" />
+          <NavigationProperty Name="電影主演Cast" Relationship="Self.FK_電影主演Cast_電影Movies" FromRole="電影Movies" ToRole="電影主演Cast" />
+          <NavigationProperty Name="電影代碼MovieCode" Relationship="Self.FK_電影代碼MovieCode_電影Movies" FromRole="電影Movies" ToRole="電影代碼MovieCode" />
+          <NavigationProperty Name="電影產地MovieOrigin" Relationship="Self.FK_電影產地MovieOrigin_電影Movies" FromRole="電影Movies" ToRole="電影產地MovieOrigin" />
+          <NavigationProperty Name="電影評論MovieComment" Relationship="Self.FK_電影評論MovieComment_電影Movies" FromRole="電影Movies" ToRole="電影評論MovieComment" />
+          <NavigationProperty Name="電影圖片MovieIImagesList" Relationship="Self.FK_電影圖片MovieIImagesList_電影Movies" FromRole="電影Movies" ToRole="電影圖片MovieIImagesList" />
+          <NavigationProperty Name="電影導演MovieDirector" Relationship="Self.FK_電影導演MovieDirector_電影Movies" FromRole="電影Movies" ToRole="電影導演MovieDirector" />
+        </EntityType>
+        <EntityType Name="電影分級MovieRating">
+          <Key>
+            <PropertyRef Name="分級編號Rating_ID" />
+          </Key>
+          <Property Name="分級編號Rating_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="分級級數Rating_Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="分級說明Rating_illustrate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="分級圖片Rating_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影Movies_電影分級MovieRating" FromRole="電影分級MovieRating" ToRole="電影Movies" />
+        </EntityType>
+        <EntityType Name="電影片種MovieType">
+          <Key>
+            <PropertyRef Name="電影片種編號MT_ID" />
+          </Key>
+          <Property Name="電影片種編號MT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="片種編號Type_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="次片種總表Types" Relationship="Self.FK_電影片種_Movie_Type_片種總表_Types" FromRole="電影片種MovieType" ToRole="次片種總表Types" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影片種MovieType_電影Movies" FromRole="電影片種MovieType" ToRole="電影Movies" />
+        </EntityType>
+        <EntityType Name="電影主演Cast">
+          <Key>
+            <PropertyRef Name="主演編號MA_ID" />
+          </Key>
+          <Property Name="主演編號MA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="演員編號Actor_ID" Type="Int32" Nullable="false" />
+          <Property Name="角色名字Character_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="角色說明Character_illustrate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影主演Cast_電影Movies" FromRole="電影主演Cast" ToRole="電影Movies" />
+          <NavigationProperty Name="演員總表Actors" Relationship="Self.FK_主演_Cast_演員_Actors" FromRole="電影主演Cast" ToRole="演員總表Actors" />
+        </EntityType>
+        <EntityType Name="電影代碼MovieCode">
+          <Key>
+            <PropertyRef Name="電影代碼編號MovieCode_ID_int" />
+          </Key>
+          <Property Name="電影代碼編號MovieCode_ID_int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="語言編號Language_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="場次Screening" Relationship="Self.FK_場次_Screening_電影代碼_Movie_Code" FromRole="電影代碼MovieCode" ToRole="場次Screening" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影代碼MovieCode_電影Movies" FromRole="電影代碼MovieCode" ToRole="電影Movies" />
+          <NavigationProperty Name="電影語言MovieLanguage" Relationship="Self.FK_電影代碼_Movie_Code_電影語言_Movie_Language" FromRole="電影代碼MovieCode" ToRole="電影語言MovieLanguage" />
+        </EntityType>
+        <EntityType Name="電影院Theater">
+          <Key>
+            <PropertyRef Name="電影院編號Theater_ID" />
+          </Key>
+          <Property Name="電影院編號Theater_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影院名稱Theater_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="影城編號MainTheater_ID" Type="Int32" Nullable="false" />
+          <Property Name="營業時間BusinessHours" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="電話Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="地址Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="官方網站URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="電影院照片Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="商品資料Products" Relationship="Self.FK_商品資料Products_電影院Theater" FromRole="電影院Theater" ToRole="商品資料Products" />
+          <NavigationProperty Name="影城MainTheater" Relationship="Self.FK_電影院Theater_影城MainTheater" FromRole="電影院Theater" ToRole="影城MainTheater" />
+          <NavigationProperty Name="影廳Cinema" Relationship="Self.FK_影廳_Cinema_電影院_Theater" FromRole="電影院Theater" ToRole="影廳Cinema" />
+        </EntityType>
+        <EntityType Name="電影產地MovieOrigin">
+          <Key>
+            <PropertyRef Name="電影產地編號MC_ID" />
+          </Key>
+          <Property Name="電影產地編號MC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="國家編號Country_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="國家總表Countrys" Relationship="Self.FK_電影產地_Movie_Origin_國家總表_Countrys" FromRole="電影產地MovieOrigin" ToRole="國家總表Countrys" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影產地MovieOrigin_電影Movies" FromRole="電影產地MovieOrigin" ToRole="電影Movies" />
+        </EntityType>
+        <EntityType Name="電影評論MovieComment">
+          <Key>
+            <PropertyRef Name="評論編號Comment_ID" />
+          </Key>
+          <Property Name="評論編號Comment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="評分Rate" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="期待度anticipation" Type="Decimal" Precision="2" Scale="1" />
+          <Property Name="評論標題Comment_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="評論內容Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="發佈時間Comment_Time" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="觀影日期Viewing_Time" Type="DateTime" Precision="0" />
+          <Property Name="觀影方式Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="公開等級編號Public_ID" Type="Int32" />
+          <Property Name="是否開放討論串OX_Floor" Type="Boolean" />
+          <Property Name="屏蔽Invisible" Type="Int32" Nullable="false" />
+          <Property Name="檢舉Report" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="回覆樓數Floor" Relationship="Self.FK_回覆樓數_Floor_電影評論_Movie_Comment" FromRole="電影評論MovieComment" ToRole="回覆樓數Floor" />
+          <NavigationProperty Name="我的追蹤清單MyFollowLists" Relationship="Self.FK_我的追蹤清單MyFollowLists_電影評論MovieComment" FromRole="電影評論MovieComment" ToRole="我的追蹤清單MyFollowLists" />
+          <NavigationProperty Name="評論圖片明細CommentImagesList" Relationship="Self.FK_評論圖片明細CommandImagesList_電影評論MovieComment" FromRole="電影評論MovieComment" ToRole="評論圖片明細CommentImagesList" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影評論MovieComment_電影Movies" FromRole="電影評論MovieComment" ToRole="電影Movies" />
+          <NavigationProperty Name="標籤明細HashtagsList" Relationship="Self.FK_標籤明細_電影評論MovieComment" FromRole="電影評論MovieComment" ToRole="標籤明細HashtagsList" />
+        </EntityType>
+        <EntityType Name="電影圖片MovieIImagesList">
+          <Key>
+            <PropertyRef Name="電影圖片編號MI_ID" />
+          </Key>
+          <Property Name="電影圖片編號MI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="圖片編號Image_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影圖片MovieIImagesList_電影Movies" FromRole="電影圖片MovieIImagesList" ToRole="電影Movies" />
+          <NavigationProperty Name="電影圖片總表MovieImages" Relationship="Self.FK_電影圖片MovieIImages_圖片總表Images" FromRole="電影圖片MovieIImagesList" ToRole="電影圖片總表MovieImages" />
+        </EntityType>
+        <EntityType Name="電影圖片總表MovieImages">
+          <Key>
+            <PropertyRef Name="圖片編號Image_ID" />
+          </Key>
+          <Property Name="圖片編號Image_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="圖片Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="電影圖片MovieIImagesList" Relationship="Self.FK_電影圖片MovieIImages_圖片總表Images" FromRole="電影圖片總表MovieImages" ToRole="電影圖片MovieIImagesList" />
+        </EntityType>
+        <EntityType Name="電影語言MovieLanguage">
+          <Key>
+            <PropertyRef Name="語言編號Language_ID" />
+          </Key>
+          <Property Name="語言編號Language_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="語言名稱Language_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="電影代碼MovieCode" Relationship="Self.FK_電影代碼_Movie_Code_電影語言_Movie_Language" FromRole="電影語言MovieLanguage" ToRole="電影代碼MovieCode" />
+        </EntityType>
+        <EntityType Name="電影導演MovieDirector">
+          <Key>
+            <PropertyRef Name="電影導演編號MD_ID" />
+          </Key>
+          <Property Name="電影導演編號MD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="電影編號Movie_ID" Type="Int32" Nullable="false" />
+          <Property Name="導演編號Director_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="電影Movies" Relationship="Self.FK_電影導演MovieDirector_電影Movies" FromRole="電影導演MovieDirector" ToRole="電影Movies" />
+          <NavigationProperty Name="導演總表Director" Relationship="Self.FK_電影導演_Movie_Director_導演總表_Director" FromRole="電影導演MovieDirector" ToRole="導演總表Director" />
+        </EntityType>
+        <EntityType Name="對象Targets">
+          <Key>
+            <PropertyRef Name="對象Target_ID" />
+          </Key>
+          <Property Name="對象Target_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="對象名稱Target_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="我的追蹤清單MyFollowLists" Relationship="Self.FK_我的追蹤清單MyFollowLists_對象Targets" FromRole="對象Targets" ToRole="我的追蹤清單MyFollowLists" />
+        </EntityType>
+        <EntityType Name="演員總表Actors">
+          <Key>
+            <PropertyRef Name="演員編號Actors_ID" />
+          </Key>
+          <Property Name="演員編號Actors_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="中文名字Name_Cht" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="英文名字Name_Eng" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="演員照片Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="電影主演Cast" Relationship="Self.FK_主演_Cast_演員_Actors" FromRole="演員總表Actors" ToRole="電影主演Cast" />
+        </EntityType>
+        <EntityType Name="影城MainTheater">
+          <Key>
+            <PropertyRef Name="影城編號MainTheater_ID" />
+          </Key>
+          <Property Name="影城編號MainTheater_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="影城名稱MainTheater_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="票價資訊TicketPrice" Relationship="Self.FK_票價資訊TicketPrice_影城MainTheater" FromRole="影城MainTheater" ToRole="票價資訊TicketPrice" />
+          <NavigationProperty Name="電影院Theater" Relationship="Self.FK_電影院Theater_影城MainTheater" FromRole="影城MainTheater" ToRole="電影院Theater" />
+        </EntityType>
+        <EntityType Name="影廳Cinema">
+          <Key>
+            <PropertyRef Name="影廳編號Cinema_ID" />
+          </Key>
+          <Property Name="影廳編號Cinema_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="影廳名稱Cinema_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="電影院編號Theater_ID" Type="Int32" Nullable="false" />
+          <Property Name="廳種名稱Cinema_Cls_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="座位資訊SeatInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="影廳照片Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="場次Screening" Relationship="Self.FK_場次_Screening_影廳_Cinema" FromRole="影廳Cinema" ToRole="場次Screening" />
+          <NavigationProperty Name="電影院Theater" Relationship="Self.FK_影廳_Cinema_電影院_Theater" FromRole="影廳Cinema" ToRole="電影院Theater" />
+        </EntityType>
+        <EntityType Name="標籤明細HashtagsList">
+          <Key>
+            <PropertyRef Name="標籤明細編號CH_ID" />
+          </Key>
+          <Property Name="標籤明細編號CH_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="評論編號Comment_ID" Type="Int32" Nullable="false" />
+          <Property Name="標籤編號Hashtag_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="電影評論MovieComment" Relationship="Self.FK_標籤明細_電影評論MovieComment" FromRole="標籤明細HashtagsList" ToRole="電影評論MovieComment" />
+          <NavigationProperty Name="標籤總表Hashtags" Relationship="Self.FK_標籤明細_標籤總表Hashtag" FromRole="標籤明細HashtagsList" ToRole="標籤總表Hashtags" />
+        </EntityType>
+        <EntityType Name="標籤總表Hashtags">
+          <Key>
+            <PropertyRef Name="標籤編號Hashtag_ID" />
+          </Key>
+          <Property Name="標籤編號Hashtag_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="標籤Hashtag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="標籤明細HashtagsList" Relationship="Self.FK_標籤明細_標籤總表Hashtag" FromRole="標籤總表Hashtags" ToRole="標籤明細HashtagsList" />
+        </EntityType>
+        <EntityType Name="導演總表Director">
+          <Key>
+            <PropertyRef Name="導演編號Director_ID" />
+          </Key>
+          <Property Name="導演編號Director_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="中文名字Name_Cht" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="英文名字Name_Eng" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="導演照片Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="電影導演MovieDirector" Relationship="Self.FK_電影導演_Movie_Director_導演總表_Director" FromRole="導演總表Director" ToRole="電影導演MovieDirector" />
+        </EntityType>
+        <EntityType Name="優惠明細CouponLists">
+          <Key>
+            <PropertyRef Name="優惠明細編號CouponList_ID" />
+          </Key>
+          <Property Name="優惠明細編號CouponList_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="會員編號Member_ID" Type="Int32" Nullable="false" />
+          <Property Name="優惠編號Coupon_ID" Type="Int32" Nullable="false" />
+          <Property Name="是否使用優惠OX_CouponUsing" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_訂單總表Orders_優惠明細BonusLists" FromRole="優惠明細CouponLists" ToRole="訂單總表Orders" />
+          <NavigationProperty Name="會員Members" Relationship="Self.FK_優惠明細CouponLists_會員Members" FromRole="優惠明細CouponLists" ToRole="會員Members" />
+          <NavigationProperty Name="優惠總表Coupon" Relationship="Self.FK_優惠明細BonusLists_優惠總表Bonus" FromRole="優惠明細CouponLists" ToRole="優惠總表Coupon" />
+        </EntityType>
+        <EntityType Name="優惠總表Coupon">
+          <Key>
+            <PropertyRef Name="優惠編號Coupon_ID" />
+          </Key>
+          <Property Name="優惠編號Coupon_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="優惠名稱Coupon_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="優惠折扣CouponDiscount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="優惠代碼Coupon_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="優惠截止日期CouponDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="優惠所需紅利BonusCost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="優惠明細CouponLists" Relationship="Self.FK_優惠明細BonusLists_優惠總表Bonus" FromRole="優惠總表Coupon" ToRole="優惠明細CouponLists" />
+        </EntityType>
+        <EntityType Name="購買商品明細Receipt">
+          <Key>
+            <PropertyRef Name="購買商品明細編號Receipt_ID" />
+          </Key>
+          <Property Name="購買商品明細編號Receipt_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="訂單編號Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="商品編號Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="商品數量Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="訂單總表Orders" Relationship="Self.FK_購買商品明細Receipt_訂單總表Orders" FromRole="購買商品明細Receipt" ToRole="訂單總表Orders" />
+          <NavigationProperty Name="商品資料Products" Relationship="Self.FK_購買商品明細Receipt_商品資料Products" FromRole="購買商品明細Receipt" ToRole="商品資料Products" />
+        </EntityType>
+        <Association Name="FK_我的片單MyMovieLists_片單總表MovieLists">
+          <End Role="片單總表MovieLists" Type="Self.片單總表MovieLists" Multiplicity="1" />
+          <End Role="我的片單MyMovieLists" Type="Self.我的片單MyMovieLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="片單總表MovieLists">
+              <PropertyRef Name="片單總表編號MovieList_ID" />
+            </Principal>
+            <Dependent Role="我的片單MyMovieLists">
+              <PropertyRef Name="片單總表編號MovieList_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_次片種總表Types_片種總表TotalTypes">
+          <End Role="片種總表TotalTypes" Type="Self.片種總表TotalTypes" Multiplicity="1" />
+          <End Role="次片種總表Types" Type="Self.次片種總表Types" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="片種總表TotalTypes">
+              <PropertyRef Name="片種編號TotalType_ID" />
+            </Principal>
+            <Dependent Role="次片種總表Types">
+              <PropertyRef Name="片種編號TotalType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_出售座位明細SeatSold_訂單總表Orders">
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="1" />
+          <End Role="出售座位明細SeatSold" Type="Self.出售座位明細SeatSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單總表Orders">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Principal>
+            <Dependent Role="出售座位明細SeatSold">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_出售座位明細SeatSold_場次Screening">
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="1" />
+          <End Role="出售座位明細SeatSold" Type="Self.出售座位明細SeatSold" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="場次Screening">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Principal>
+            <Dependent Role="出售座位明細SeatSold">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_出售座位狀態SeatStatus_場次Screening">
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="1" />
+          <End Role="出售座位狀態SeatStatus" Type="Self.出售座位狀態SeatStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="場次Screening">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Principal>
+            <Dependent Role="出售座位狀態SeatStatus">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_回覆樓數_Floor_電影評論_Movie_Comment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="回覆樓數Floor" Type="Self.回覆樓數Floor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="回覆樓數Floor">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_回覆樓數Floor">
+          <End Role="回覆樓數Floor" Type="Self.回覆樓數Floor" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="回覆樓數Floor">
+              <PropertyRef Name="樓數編號Floor_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="連接編號Connect_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影片種_Movie_Type_片種總表_Types">
+          <End Role="次片種總表Types" Type="Self.次片種總表Types" Multiplicity="1" />
+          <End Role="電影片種MovieType" Type="Self.電影片種MovieType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="次片種總表Types">
+              <PropertyRef Name="次片種編號Type_ID" />
+            </Principal>
+            <Dependent Role="電影片種MovieType">
+              <PropertyRef Name="片種編號Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的片單MyMovieLists_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="我的片單MyMovieLists" Type="Self.我的片單MyMovieLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="我的片單MyMovieLists">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的片單MyMovieLists_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="我的片單MyMovieLists" Type="Self.我的片單MyMovieLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="我的片單MyMovieLists">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes">
+          <End Role="追讚倒ActionTypes" Type="Self.追讚倒ActionTypes" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="追讚倒ActionTypes">
+              <PropertyRef Name="追讚倒編號ActionType_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="追讚倒編號ActionType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_電影評論MovieComment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="連接編號Connect_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的追蹤清單MyFollowLists_對象Targets">
+          <End Role="對象Targets" Type="Self.對象Targets" Multiplicity="1" />
+          <End Role="我的追蹤清單MyFollowLists" Type="Self.我的追蹤清單MyFollowLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="對象Targets">
+              <PropertyRef Name="對象Target_ID" />
+            </Principal>
+            <Dependent Role="我的追蹤清單MyFollowLists">
+              <PropertyRef Name="對象Target_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影_Movies_系列電影_Movie_Series">
+          <End Role="系列電影MovieSeries" Type="Self.系列電影MovieSeries" Multiplicity="0..1" />
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="系列電影MovieSeries">
+              <PropertyRef Name="系列編號Series_ID" />
+            </Principal>
+            <Dependent Role="電影Movies">
+              <PropertyRef Name="系列編號Series_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單明細OrderDetail_訂單總表Orders">
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="1" />
+          <End Role="訂單明細OrderDetail" Type="Self.訂單明細OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單總表Orders">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Principal>
+            <Dependent Role="訂單明細OrderDetail">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單明細OrderDetail_票價資訊TicketPrice">
+          <End Role="票價資訊TicketPrice" Type="Self.票價資訊TicketPrice" Multiplicity="1" />
+          <End Role="訂單明細OrderDetail" Type="Self.訂單明細OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="票價資訊TicketPrice">
+              <PropertyRef Name="票價明細Ticket_ID" />
+            </Principal>
+            <Dependent Role="訂單明細OrderDetail">
+              <PropertyRef Name="票價明細Ticket_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_訂單狀態OrderStatus">
+          <End Role="訂單狀態OrderStatus" Type="Self.訂單狀態OrderStatus" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單狀態OrderStatus">
+              <PropertyRef Name="訂單狀態編號OrderStatus_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="訂單狀態編號OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_場次Screening">
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="場次Screening">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="場次編號Screening_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_訂單總表Orders_優惠明細BonusLists">
+          <End Role="優惠明細CouponLists" Type="Self.優惠明細CouponLists" Multiplicity="1" />
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="優惠明細CouponLists">
+              <PropertyRef Name="優惠明細編號CouponList_ID" />
+            </Principal>
+            <Dependent Role="訂單總表Orders">
+              <PropertyRef Name="優惠明細編號CouponList_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_購買商品明細Receipt_訂單總表Orders">
+          <End Role="訂單總表Orders" Type="Self.訂單總表Orders" Multiplicity="1" />
+          <End Role="購買商品明細Receipt" Type="Self.購買商品明細Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="訂單總表Orders">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Principal>
+            <Dependent Role="購買商品明細Receipt">
+              <PropertyRef Name="訂單編號Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_商品資料Products_電影院Theater">
+          <End Role="電影院Theater" Type="Self.電影院Theater" Multiplicity="1" />
+          <End Role="商品資料Products" Type="Self.商品資料Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影院Theater">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Principal>
+            <Dependent Role="商品資料Products">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_購買商品明細Receipt_商品資料Products">
+          <End Role="商品資料Products" Type="Self.商品資料Products" Multiplicity="1" />
+          <End Role="購買商品明細Receipt" Type="Self.購買商品明細Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="商品資料Products">
+              <PropertyRef Name="商品編號Product_ID" />
+            </Principal>
+            <Dependent Role="購買商品明細Receipt">
+              <PropertyRef Name="商品編號Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影產地_Movie_Origin_國家總表_Countrys">
+          <End Role="國家總表Countrys" Type="Self.國家總表Countrys" Multiplicity="1" />
+          <End Role="電影產地MovieOrigin" Type="Self.電影產地MovieOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="國家總表Countrys">
+              <PropertyRef Name="國家編號Country_ID" />
+            </Principal>
+            <Dependent Role="電影產地MovieOrigin">
+              <PropertyRef Name="國家編號Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_票價資訊TicketPrice_票種TicketType">
+          <End Role="票種TicketType" Type="Self.票種TicketType" Multiplicity="1" />
+          <End Role="票價資訊TicketPrice" Type="Self.票價資訊TicketPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="票種TicketType">
+              <PropertyRef Name="票種編號TicketType_ID" />
+            </Principal>
+            <Dependent Role="票價資訊TicketPrice">
+              <PropertyRef Name="票種編號TicketType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_票價資訊TicketPrice_影城MainTheater">
+          <End Role="影城MainTheater" Type="Self.影城MainTheater" Multiplicity="1" />
+          <End Role="票價資訊TicketPrice" Type="Self.票價資訊TicketPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="影城MainTheater">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Principal>
+            <Dependent Role="票價資訊TicketPrice">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_場次_Screening_電影代碼_Movie_Code">
+          <End Role="電影代碼MovieCode" Type="Self.電影代碼MovieCode" Multiplicity="1" />
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影代碼MovieCode">
+              <PropertyRef Name="電影代碼編號MovieCode_ID_int" />
+            </Principal>
+            <Dependent Role="場次Screening">
+              <PropertyRef Name="電影代碼Movie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_場次_Screening_影廳_Cinema">
+          <End Role="影廳Cinema" Type="Self.影廳Cinema" Multiplicity="1" />
+          <End Role="場次Screening" Type="Self.場次Screening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="影廳Cinema">
+              <PropertyRef Name="影廳編號Cinema_ID" />
+            </Principal>
+            <Dependent Role="場次Screening">
+              <PropertyRef Name="影廳編號Cinema_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_評論圖片明細CommandImagesList_評論圖庫CommandImages">
+          <End Role="評論圖片總表CommentImages" Type="Self.評論圖片總表CommentImages" Multiplicity="1" />
+          <End Role="評論圖片明細CommentImagesList" Type="Self.評論圖片明細CommentImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="評論圖片總表CommentImages">
+              <PropertyRef Name="評論圖庫編號CommentImage_ID" />
+            </Principal>
+            <Dependent Role="評論圖片明細CommentImagesList">
+              <PropertyRef Name="評論圖庫編號CommentImage_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_評論圖片明細CommandImagesList_電影評論MovieComment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="評論圖片明細CommentImagesList" Type="Self.評論圖片明細CommentImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="評論圖片明細CommentImagesList">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_優惠明細CouponLists_會員Members">
+          <End Role="會員Members" Type="Self.會員Members" Multiplicity="1" />
+          <End Role="優惠明細CouponLists" Type="Self.優惠明細CouponLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="會員Members">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Principal>
+            <Dependent Role="優惠明細CouponLists">
+              <PropertyRef Name="會員編號Member_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影Movies_電影分級MovieRating">
+          <End Role="電影分級MovieRating" Type="Self.電影分級MovieRating" Multiplicity="1" />
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影分級MovieRating">
+              <PropertyRef Name="分級編號Rating_ID" />
+            </Principal>
+            <Dependent Role="電影Movies">
+              <PropertyRef Name="電影分級編號Rating_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影片種MovieType_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影片種MovieType" Type="Self.電影片種MovieType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影片種MovieType">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影主演Cast_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影主演Cast" Type="Self.電影主演Cast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影主演Cast">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影代碼MovieCode_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影代碼MovieCode" Type="Self.電影代碼MovieCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影代碼MovieCode">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影產地MovieOrigin_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影產地MovieOrigin" Type="Self.電影產地MovieOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影產地MovieOrigin">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影評論MovieComment_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影評論MovieComment">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影圖片MovieIImagesList_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影圖片MovieIImagesList" Type="Self.電影圖片MovieIImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影圖片MovieIImagesList">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影導演MovieDirector_電影Movies">
+          <End Role="電影Movies" Type="Self.電影Movies" Multiplicity="1" />
+          <End Role="電影導演MovieDirector" Type="Self.電影導演MovieDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影Movies">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Principal>
+            <Dependent Role="電影導演MovieDirector">
+              <PropertyRef Name="電影編號Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_主演_Cast_演員_Actors">
+          <End Role="演員總表Actors" Type="Self.演員總表Actors" Multiplicity="1" />
+          <End Role="電影主演Cast" Type="Self.電影主演Cast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="演員總表Actors">
+              <PropertyRef Name="演員編號Actors_ID" />
+            </Principal>
+            <Dependent Role="電影主演Cast">
+              <PropertyRef Name="演員編號Actor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影代碼_Movie_Code_電影語言_Movie_Language">
+          <End Role="電影語言MovieLanguage" Type="Self.電影語言MovieLanguage" Multiplicity="1" />
+          <End Role="電影代碼MovieCode" Type="Self.電影代碼MovieCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影語言MovieLanguage">
+              <PropertyRef Name="語言編號Language_ID" />
+            </Principal>
+            <Dependent Role="電影代碼MovieCode">
+              <PropertyRef Name="語言編號Language_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影院Theater_影城MainTheater">
+          <End Role="影城MainTheater" Type="Self.影城MainTheater" Multiplicity="1" />
+          <End Role="電影院Theater" Type="Self.電影院Theater" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="影城MainTheater">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Principal>
+            <Dependent Role="電影院Theater">
+              <PropertyRef Name="影城編號MainTheater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_影廳_Cinema_電影院_Theater">
+          <End Role="電影院Theater" Type="Self.電影院Theater" Multiplicity="1" />
+          <End Role="影廳Cinema" Type="Self.影廳Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影院Theater">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Principal>
+            <Dependent Role="影廳Cinema">
+              <PropertyRef Name="電影院編號Theater_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_標籤明細_電影評論MovieComment">
+          <End Role="電影評論MovieComment" Type="Self.電影評論MovieComment" Multiplicity="1" />
+          <End Role="標籤明細HashtagsList" Type="Self.標籤明細HashtagsList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影評論MovieComment">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Principal>
+            <Dependent Role="標籤明細HashtagsList">
+              <PropertyRef Name="評論編號Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影圖片MovieIImages_圖片總表Images">
+          <End Role="電影圖片總表MovieImages" Type="Self.電影圖片總表MovieImages" Multiplicity="1" />
+          <End Role="電影圖片MovieIImagesList" Type="Self.電影圖片MovieIImagesList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="電影圖片總表MovieImages">
+              <PropertyRef Name="圖片編號Image_ID" />
+            </Principal>
+            <Dependent Role="電影圖片MovieIImagesList">
+              <PropertyRef Name="圖片編號Image_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_電影導演_Movie_Director_導演總表_Director">
+          <End Role="導演總表Director" Type="Self.導演總表Director" Multiplicity="1" />
+          <End Role="電影導演MovieDirector" Type="Self.電影導演MovieDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="導演總表Director">
+              <PropertyRef Name="導演編號Director_ID" />
+            </Principal>
+            <Dependent Role="電影導演MovieDirector">
+              <PropertyRef Name="導演編號Director_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_標籤明細_標籤總表Hashtag">
+          <End Role="標籤總表Hashtags" Type="Self.標籤總表Hashtags" Multiplicity="1" />
+          <End Role="標籤明細HashtagsList" Type="Self.標籤明細HashtagsList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="標籤總表Hashtags">
+              <PropertyRef Name="標籤編號Hashtag_ID" />
+            </Principal>
+            <Dependent Role="標籤明細HashtagsList">
+              <PropertyRef Name="標籤編號Hashtag_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_優惠明細BonusLists_優惠總表Bonus">
+          <End Role="優惠總表Coupon" Type="Self.優惠總表Coupon" Multiplicity="1" />
+          <End Role="優惠明細CouponLists" Type="Self.優惠明細CouponLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="優惠總表Coupon">
+              <PropertyRef Name="優惠編號Coupon_ID" />
+            </Principal>
+            <Dependent Role="優惠明細CouponLists">
+              <PropertyRef Name="優惠編號Coupon_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MDAEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="片單總表MovieLists" EntityType="Self.片單總表MovieLists" />
+          <EntitySet Name="片種總表TotalTypes" EntityType="Self.片種總表TotalTypes" />
+          <EntitySet Name="出售座位明細SeatSold" EntityType="Self.出售座位明細SeatSold" />
+          <EntitySet Name="出售座位狀態SeatStatus" EntityType="Self.出售座位狀態SeatStatus" />
+          <EntitySet Name="回覆樓數Floor" EntityType="Self.回覆樓數Floor" />
+          <EntitySet Name="次片種總表Types" EntityType="Self.次片種總表Types" />
+          <EntitySet Name="我的片單MyMovieLists" EntityType="Self.我的片單MyMovieLists" />
+          <EntitySet Name="我的追蹤清單MyFollowLists" EntityType="Self.我的追蹤清單MyFollowLists" />
+          <EntitySet Name="系列電影MovieSeries" EntityType="Self.系列電影MovieSeries" />
+          <EntitySet Name="訂單明細OrderDetail" EntityType="Self.訂單明細OrderDetail" />
+          <EntitySet Name="訂單狀態OrderStatus" EntityType="Self.訂單狀態OrderStatus" />
+          <EntitySet Name="訂單總表Orders" EntityType="Self.訂單總表Orders" />
+          <EntitySet Name="追讚倒ActionTypes" EntityType="Self.追讚倒ActionTypes" />
+          <EntitySet Name="商品資料Products" EntityType="Self.商品資料Products" />
+          <EntitySet Name="國家總表Countrys" EntityType="Self.國家總表Countrys" />
+          <EntitySet Name="票種TicketType" EntityType="Self.票種TicketType" />
+          <EntitySet Name="票價資訊TicketPrice" EntityType="Self.票價資訊TicketPrice" />
+          <EntitySet Name="場次Screening" EntityType="Self.場次Screening" />
+          <EntitySet Name="評論圖片明細CommentImagesList" EntityType="Self.評論圖片明細CommentImagesList" />
+          <EntitySet Name="評論圖片總表CommentImages" EntityType="Self.評論圖片總表CommentImages" />
+          <EntitySet Name="會員Members" EntityType="Self.會員Members" />
+          <EntitySet Name="電影Movies" EntityType="Self.電影Movies" />
+          <EntitySet Name="電影分級MovieRating" EntityType="Self.電影分級MovieRating" />
+          <EntitySet Name="電影片種MovieType" EntityType="Self.電影片種MovieType" />
+          <EntitySet Name="電影主演Cast" EntityType="Self.電影主演Cast" />
+          <EntitySet Name="電影代碼MovieCode" EntityType="Self.電影代碼MovieCode" />
+          <EntitySet Name="電影院Theater" EntityType="Self.電影院Theater" />
+          <EntitySet Name="電影產地MovieOrigin" EntityType="Self.電影產地MovieOrigin" />
+          <EntitySet Name="電影評論MovieComment" EntityType="Self.電影評論MovieComment" />
+          <EntitySet Name="電影圖片MovieIImagesList" EntityType="Self.電影圖片MovieIImagesList" />
+          <EntitySet Name="電影圖片總表MovieImages" EntityType="Self.電影圖片總表MovieImages" />
+          <EntitySet Name="電影語言MovieLanguage" EntityType="Self.電影語言MovieLanguage" />
+          <EntitySet Name="電影導演MovieDirector" EntityType="Self.電影導演MovieDirector" />
+          <EntitySet Name="對象Targets" EntityType="Self.對象Targets" />
+          <EntitySet Name="演員總表Actors" EntityType="Self.演員總表Actors" />
+          <EntitySet Name="影城MainTheater" EntityType="Self.影城MainTheater" />
+          <EntitySet Name="影廳Cinema" EntityType="Self.影廳Cinema" />
+          <EntitySet Name="標籤明細HashtagsList" EntityType="Self.標籤明細HashtagsList" />
+          <EntitySet Name="標籤總表Hashtags" EntityType="Self.標籤總表Hashtags" />
+          <EntitySet Name="導演總表Director" EntityType="Self.導演總表Director" />
+          <EntitySet Name="優惠明細CouponLists" EntityType="Self.優惠明細CouponLists" />
+          <EntitySet Name="優惠總表Coupon" EntityType="Self.優惠總表Coupon" />
+          <EntitySet Name="購買商品明細Receipt" EntityType="Self.購買商品明細Receipt" />
+          <AssociationSet Name="FK_我的片單MyMovieLists_片單總表MovieLists" Association="Self.FK_我的片單MyMovieLists_片單總表MovieLists">
+            <End Role="片單總表MovieLists" EntitySet="片單總表MovieLists" />
+            <End Role="我的片單MyMovieLists" EntitySet="我的片單MyMovieLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_次片種總表Types_片種總表TotalTypes" Association="Self.FK_次片種總表Types_片種總表TotalTypes">
+            <End Role="片種總表TotalTypes" EntitySet="片種總表TotalTypes" />
+            <End Role="次片種總表Types" EntitySet="次片種總表Types" />
+          </AssociationSet>
+          <AssociationSet Name="FK_出售座位明細SeatSold_訂單總表Orders" Association="Self.FK_出售座位明細SeatSold_訂單總表Orders">
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+            <End Role="出售座位明細SeatSold" EntitySet="出售座位明細SeatSold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_出售座位明細SeatSold_場次Screening" Association="Self.FK_出售座位明細SeatSold_場次Screening">
+            <End Role="場次Screening" EntitySet="場次Screening" />
+            <End Role="出售座位明細SeatSold" EntitySet="出售座位明細SeatSold" />
+          </AssociationSet>
+          <AssociationSet Name="FK_出售座位狀態SeatStatus_場次Screening" Association="Self.FK_出售座位狀態SeatStatus_場次Screening">
+            <End Role="場次Screening" EntitySet="場次Screening" />
+            <End Role="出售座位狀態SeatStatus" EntitySet="出售座位狀態SeatStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_回覆樓數_Floor_電影評論_Movie_Comment" Association="Self.FK_回覆樓數_Floor_電影評論_Movie_Comment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="回覆樓數Floor" EntitySet="回覆樓數Floor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_回覆樓數Floor" Association="Self.FK_我的追蹤清單MyFollowLists_回覆樓數Floor">
+            <End Role="回覆樓數Floor" EntitySet="回覆樓數Floor" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影片種_Movie_Type_片種總表_Types" Association="Self.FK_電影片種_Movie_Type_片種總表_Types">
+            <End Role="次片種總表Types" EntitySet="次片種總表Types" />
+            <End Role="電影片種MovieType" EntitySet="電影片種MovieType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的片單MyMovieLists_會員Members" Association="Self.FK_我的片單MyMovieLists_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="我的片單MyMovieLists" EntitySet="我的片單MyMovieLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的片單MyMovieLists_電影Movies" Association="Self.FK_我的片單MyMovieLists_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="我的片單MyMovieLists" EntitySet="我的片單MyMovieLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes" Association="Self.FK_我的追蹤清單MyFollowLists_追讚倒ActionTypes">
+            <End Role="追讚倒ActionTypes" EntitySet="追讚倒ActionTypes" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_會員Members" Association="Self.FK_我的追蹤清單MyFollowLists_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_電影評論MovieComment" Association="Self.FK_我的追蹤清單MyFollowLists_電影評論MovieComment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的追蹤清單MyFollowLists_對象Targets" Association="Self.FK_我的追蹤清單MyFollowLists_對象Targets">
+            <End Role="對象Targets" EntitySet="對象Targets" />
+            <End Role="我的追蹤清單MyFollowLists" EntitySet="我的追蹤清單MyFollowLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影_Movies_系列電影_Movie_Series" Association="Self.FK_電影_Movies_系列電影_Movie_Series">
+            <End Role="系列電影MovieSeries" EntitySet="系列電影MovieSeries" />
+            <End Role="電影Movies" EntitySet="電影Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單明細OrderDetail_訂單總表Orders" Association="Self.FK_訂單明細OrderDetail_訂單總表Orders">
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+            <End Role="訂單明細OrderDetail" EntitySet="訂單明細OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單明細OrderDetail_票價資訊TicketPrice" Association="Self.FK_訂單明細OrderDetail_票價資訊TicketPrice">
+            <End Role="票價資訊TicketPrice" EntitySet="票價資訊TicketPrice" />
+            <End Role="訂單明細OrderDetail" EntitySet="訂單明細OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_訂單狀態OrderStatus" Association="Self.FK_訂單總表Orders_訂單狀態OrderStatus">
+            <End Role="訂單狀態OrderStatus" EntitySet="訂單狀態OrderStatus" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_場次Screening" Association="Self.FK_訂單總表Orders_場次Screening">
+            <End Role="場次Screening" EntitySet="場次Screening" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_會員Members" Association="Self.FK_訂單總表Orders_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_訂單總表Orders_優惠明細BonusLists" Association="Self.FK_訂單總表Orders_優惠明細BonusLists">
+            <End Role="優惠明細CouponLists" EntitySet="優惠明細CouponLists" />
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_購買商品明細Receipt_訂單總表Orders" Association="Self.FK_購買商品明細Receipt_訂單總表Orders">
+            <End Role="訂單總表Orders" EntitySet="訂單總表Orders" />
+            <End Role="購買商品明細Receipt" EntitySet="購買商品明細Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_商品資料Products_電影院Theater" Association="Self.FK_商品資料Products_電影院Theater">
+            <End Role="電影院Theater" EntitySet="電影院Theater" />
+            <End Role="商品資料Products" EntitySet="商品資料Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_購買商品明細Receipt_商品資料Products" Association="Self.FK_購買商品明細Receipt_商品資料Products">
+            <End Role="商品資料Products" EntitySet="商品資料Products" />
+            <End Role="購買商品明細Receipt" EntitySet="購買商品明細Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影產地_Movie_Origin_國家總表_Countrys" Association="Self.FK_電影產地_Movie_Origin_國家總表_Countrys">
+            <End Role="國家總表Countrys" EntitySet="國家總表Countrys" />
+            <End Role="電影產地MovieOrigin" EntitySet="電影產地MovieOrigin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_票價資訊TicketPrice_票種TicketType" Association="Self.FK_票價資訊TicketPrice_票種TicketType">
+            <End Role="票種TicketType" EntitySet="票種TicketType" />
+            <End Role="票價資訊TicketPrice" EntitySet="票價資訊TicketPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_票價資訊TicketPrice_影城MainTheater" Association="Self.FK_票價資訊TicketPrice_影城MainTheater">
+            <End Role="影城MainTheater" EntitySet="影城MainTheater" />
+            <End Role="票價資訊TicketPrice" EntitySet="票價資訊TicketPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_場次_Screening_電影代碼_Movie_Code" Association="Self.FK_場次_Screening_電影代碼_Movie_Code">
+            <End Role="電影代碼MovieCode" EntitySet="電影代碼MovieCode" />
+            <End Role="場次Screening" EntitySet="場次Screening" />
+          </AssociationSet>
+          <AssociationSet Name="FK_場次_Screening_影廳_Cinema" Association="Self.FK_場次_Screening_影廳_Cinema">
+            <End Role="影廳Cinema" EntitySet="影廳Cinema" />
+            <End Role="場次Screening" EntitySet="場次Screening" />
+          </AssociationSet>
+          <AssociationSet Name="FK_評論圖片明細CommandImagesList_評論圖庫CommandImages" Association="Self.FK_評論圖片明細CommandImagesList_評論圖庫CommandImages">
+            <End Role="評論圖片總表CommentImages" EntitySet="評論圖片總表CommentImages" />
+            <End Role="評論圖片明細CommentImagesList" EntitySet="評論圖片明細CommentImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_評論圖片明細CommandImagesList_電影評論MovieComment" Association="Self.FK_評論圖片明細CommandImagesList_電影評論MovieComment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="評論圖片明細CommentImagesList" EntitySet="評論圖片明細CommentImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_優惠明細CouponLists_會員Members" Association="Self.FK_優惠明細CouponLists_會員Members">
+            <End Role="會員Members" EntitySet="會員Members" />
+            <End Role="優惠明細CouponLists" EntitySet="優惠明細CouponLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影Movies_電影分級MovieRating" Association="Self.FK_電影Movies_電影分級MovieRating">
+            <End Role="電影分級MovieRating" EntitySet="電影分級MovieRating" />
+            <End Role="電影Movies" EntitySet="電影Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影片種MovieType_電影Movies" Association="Self.FK_電影片種MovieType_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影片種MovieType" EntitySet="電影片種MovieType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影主演Cast_電影Movies" Association="Self.FK_電影主演Cast_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影主演Cast" EntitySet="電影主演Cast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影代碼MovieCode_電影Movies" Association="Self.FK_電影代碼MovieCode_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影代碼MovieCode" EntitySet="電影代碼MovieCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影產地MovieOrigin_電影Movies" Association="Self.FK_電影產地MovieOrigin_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影產地MovieOrigin" EntitySet="電影產地MovieOrigin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影評論MovieComment_電影Movies" Association="Self.FK_電影評論MovieComment_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影圖片MovieIImagesList_電影Movies" Association="Self.FK_電影圖片MovieIImagesList_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影圖片MovieIImagesList" EntitySet="電影圖片MovieIImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影導演MovieDirector_電影Movies" Association="Self.FK_電影導演MovieDirector_電影Movies">
+            <End Role="電影Movies" EntitySet="電影Movies" />
+            <End Role="電影導演MovieDirector" EntitySet="電影導演MovieDirector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_主演_Cast_演員_Actors" Association="Self.FK_主演_Cast_演員_Actors">
+            <End Role="演員總表Actors" EntitySet="演員總表Actors" />
+            <End Role="電影主演Cast" EntitySet="電影主演Cast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影代碼_Movie_Code_電影語言_Movie_Language" Association="Self.FK_電影代碼_Movie_Code_電影語言_Movie_Language">
+            <End Role="電影語言MovieLanguage" EntitySet="電影語言MovieLanguage" />
+            <End Role="電影代碼MovieCode" EntitySet="電影代碼MovieCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影院Theater_影城MainTheater" Association="Self.FK_電影院Theater_影城MainTheater">
+            <End Role="影城MainTheater" EntitySet="影城MainTheater" />
+            <End Role="電影院Theater" EntitySet="電影院Theater" />
+          </AssociationSet>
+          <AssociationSet Name="FK_影廳_Cinema_電影院_Theater" Association="Self.FK_影廳_Cinema_電影院_Theater">
+            <End Role="電影院Theater" EntitySet="電影院Theater" />
+            <End Role="影廳Cinema" EntitySet="影廳Cinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_標籤明細_電影評論MovieComment" Association="Self.FK_標籤明細_電影評論MovieComment">
+            <End Role="電影評論MovieComment" EntitySet="電影評論MovieComment" />
+            <End Role="標籤明細HashtagsList" EntitySet="標籤明細HashtagsList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影圖片MovieIImages_圖片總表Images" Association="Self.FK_電影圖片MovieIImages_圖片總表Images">
+            <End Role="電影圖片總表MovieImages" EntitySet="電影圖片總表MovieImages" />
+            <End Role="電影圖片MovieIImagesList" EntitySet="電影圖片MovieIImagesList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_電影導演_Movie_Director_導演總表_Director" Association="Self.FK_電影導演_Movie_Director_導演總表_Director">
+            <End Role="導演總表Director" EntitySet="導演總表Director" />
+            <End Role="電影導演MovieDirector" EntitySet="電影導演MovieDirector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_標籤明細_標籤總表Hashtag" Association="Self.FK_標籤明細_標籤總表Hashtag">
+            <End Role="標籤總表Hashtags" EntitySet="標籤總表Hashtags" />
+            <End Role="標籤明細HashtagsList" EntitySet="標籤明細HashtagsList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_優惠明細BonusLists_優惠總表Bonus" Association="Self.FK_優惠明細BonusLists_優惠總表Bonus">
+            <End Role="優惠總表Coupon" EntitySet="優惠總表Coupon" />
+            <End Role="優惠明細CouponLists" EntitySet="優惠明細CouponLists" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MDAModelStoreContainer" CdmEntityContainer="MDAEntities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MDAModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="片單總表MovieLists">
+            <EntityTypeMapping TypeName="MDAModel.片單總表MovieLists">
+              <MappingFragment StoreEntitySet="片單總表MovieLists">
+                <ScalarProperty Name="片單總表編號MovieList_ID" ColumnName="片單總表編號MovieList_ID" />
+                <ScalarProperty Name="片單總表名稱List_Name" ColumnName="片單總表名稱List_Name" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="片種總表TotalTypes">
+            <EntityTypeMapping TypeName="MDAModel.片種總表TotalTypes">
+              <MappingFragment StoreEntitySet="片種總表TotalTypes">
+                <ScalarProperty Name="片種編號TotalType_ID" ColumnName="片種編號TotalType_ID" />
+                <ScalarProperty Name="片種名稱TotalType_Name" ColumnName="片種名稱TotalType_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="出售座位明細SeatSold">
+            <EntityTypeMapping TypeName="MDAModel.出售座位明細SeatSold">
+              <MappingFragment StoreEntitySet="出售座位明細SeatSold">
+                <ScalarProperty Name="訂單編號Order_ID" ColumnName="訂單編號Order_ID" />
+                <ScalarProperty Name="出售明細編號Sold_ID" ColumnName="出售明細編號Sold_ID" />
+                <ScalarProperty Name="場次編號Screening_ID" ColumnName="場次編號Screening_ID" />
+                <ScalarProperty Name="座位表編號Seat_ID" ColumnName="座位表編號Seat_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="出售座位狀態SeatStatus">
+            <EntityTypeMapping TypeName="MDAModel.出售座位狀態SeatStatus">
+              <MappingFragment StoreEntitySet="出售座位狀態SeatStatus">
+                <ScalarProperty Name="出售座位編號Seat_ID" ColumnName="出售座位編號Seat_ID" />
+                <ScalarProperty Name="場次編號Screening_ID" ColumnName="場次編號Screening_ID" />
+                <ScalarProperty Name="出售座位資訊SeatSoldInfo" ColumnName="出售座位資訊SeatSoldInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="回覆樓數Floor">
+            <EntityTypeMapping TypeName="MDAModel.回覆樓數Floor">
+              <MappingFragment StoreEntitySet="回覆樓數Floor">
+                <ScalarProperty Name="樓數編號Floor_ID" ColumnName="樓數編號Floor_ID" />
+                <ScalarProperty Name="評論編號Comment_ID" ColumnName="評論編號Comment_ID" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="回覆內容Floors" ColumnName="回覆內容Floors" />
+                <ScalarProperty Name="發佈時間Floor_Time" ColumnName="發佈時間Floor_Time" />
+                <ScalarProperty Name="被按讚次數Thumbs_Up" ColumnName="被按讚次數Thumbs_Up" />
+                <ScalarProperty Name="被倒讚次數Thumbs_Down" ColumnName="被倒讚次數Thumbs_Down" />
+                <ScalarProperty Name="屏蔽Invisible" ColumnName="屏蔽Invisible" />
+                <ScalarProperty Name="檢舉Report" ColumnName="檢舉Report" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="次片種總表Types">
+            <EntityTypeMapping TypeName="MDAModel.次片種總表Types">
+              <MappingFragment StoreEntitySet="次片種總表Types">
+                <ScalarProperty Name="片種編號TotalType_ID" ColumnName="片種編號TotalType_ID" />
+                <ScalarProperty Name="次片種編號Type_ID" ColumnName="次片種編號Type_ID" />
+                <ScalarProperty Name="次片種名稱Type_Name" ColumnName="次片種名稱Type_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="我的片單MyMovieLists">
+            <EntityTypeMapping TypeName="MDAModel.我的片單MyMovieLists">
+              <MappingFragment StoreEntitySet="我的片單MyMovieLists">
+                <ScalarProperty Name="我的片單MyMovieList_ID" ColumnName="我的片單MyMovieList_ID" />
+                <ScalarProperty Name="片單總表編號MovieList_ID" ColumnName="片單總表編號MovieList_ID" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="我的追蹤清單MyFollowLists">
+            <EntityTypeMapping TypeName="MDAModel.我的追蹤清單MyFollowLists">
+              <MappingFragment StoreEntitySet="我的追蹤清單MyFollowLists">
+                <ScalarProperty Name="我的追蹤清單編號CF_ID" ColumnName="我的追蹤清單編號CF_ID" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="對象Target_ID" ColumnName="對象Target_ID" />
+                <ScalarProperty Name="追讚倒編號ActionType_ID" ColumnName="追讚倒編號ActionType_ID" />
+                <ScalarProperty Name="連接編號Connect_ID" ColumnName="連接編號Connect_ID" />
+                <ScalarProperty Name="檢舉理由ReportReason" ColumnName="檢舉理由ReportReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="系列電影MovieSeries">
+            <EntityTypeMapping TypeName="MDAModel.系列電影MovieSeries">
+              <MappingFragment StoreEntitySet="系列電影MovieSeries">
+                <ScalarProperty Name="系列編號Series_ID" ColumnName="系列編號Series_ID" />
+                <ScalarProperty Name="系列名稱Series_Name" ColumnName="系列名稱Series_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="訂單明細OrderDetail">
+            <EntityTypeMapping TypeName="MDAModel.訂單明細OrderDetail">
+              <MappingFragment StoreEntitySet="訂單明細OrderDetail">
+                <ScalarProperty Name="訂單編號Order_ID" ColumnName="訂單編號Order_ID" />
+                <ScalarProperty Name="訂單明細編號OrderDetail_ID" ColumnName="訂單明細編號OrderDetail_ID" />
+                <ScalarProperty Name="票價明細Ticket_ID" ColumnName="票價明細Ticket_ID" />
+                <ScalarProperty Name="張數Count" ColumnName="張數Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="訂單狀態OrderStatus">
+            <EntityTypeMapping TypeName="MDAModel.訂單狀態OrderStatus">
+              <MappingFragment StoreEntitySet="訂單狀態OrderStatus">
+                <ScalarProperty Name="訂單狀態編號OrderStatus_ID" ColumnName="訂單狀態編號OrderStatus_ID" />
+                <ScalarProperty Name="訂單狀態OrderStatus_Name" ColumnName="訂單狀態OrderStatus_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="訂單總表Orders">
+            <EntityTypeMapping TypeName="MDAModel.訂單總表Orders">
+              <MappingFragment StoreEntitySet="訂單總表Orders">
+                <ScalarProperty Name="訂單編號Order_ID" ColumnName="訂單編號Order_ID" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="訂單時間OrderTime" ColumnName="訂單時間OrderTime" />
+                <ScalarProperty Name="場次編號Screening_ID" ColumnName="場次編號Screening_ID" />
+                <ScalarProperty Name="優惠明細編號CouponList_ID" ColumnName="優惠明細編號CouponList_ID" />
+                <ScalarProperty Name="訂單狀態編號OrderStatus_ID" ColumnName="訂單狀態編號OrderStatus_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="追讚倒ActionTypes">
+            <EntityTypeMapping TypeName="MDAModel.追讚倒ActionTypes">
+              <MappingFragment StoreEntitySet="追讚倒ActionTypes">
+                <ScalarProperty Name="追讚倒編號ActionType_ID" ColumnName="追讚倒編號ActionType_ID" />
+                <ScalarProperty Name="追讚倒名稱ActionType_Name" ColumnName="追讚倒名稱ActionType_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="商品資料Products">
+            <EntityTypeMapping TypeName="MDAModel.商品資料Products">
+              <MappingFragment StoreEntitySet="商品資料Products">
+                <ScalarProperty Name="商品編號Product_ID" ColumnName="商品編號Product_ID" />
+                <ScalarProperty Name="商品名稱Product_Name" ColumnName="商品名稱Product_Name" />
+                <ScalarProperty Name="商品價格Product_Price" ColumnName="商品價格Product_Price" />
+                <ScalarProperty Name="電影院編號Theater_ID" ColumnName="電影院編號Theater_ID" />
+                <ScalarProperty Name="商品圖片Image" ColumnName="商品圖片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="國家總表Countrys">
+            <EntityTypeMapping TypeName="MDAModel.國家總表Countrys">
+              <MappingFragment StoreEntitySet="國家總表Countrys">
+                <ScalarProperty Name="國家編號Country_ID" ColumnName="國家編號Country_ID" />
+                <ScalarProperty Name="國家名稱Country_Name" ColumnName="國家名稱Country_Name" />
+                <ScalarProperty Name="國旗Country_Image" ColumnName="國旗Country_Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="票種TicketType">
+            <EntityTypeMapping TypeName="MDAModel.票種TicketType">
+              <MappingFragment StoreEntitySet="票種TicketType">
+                <ScalarProperty Name="票種編號TicketType_ID" ColumnName="票種編號TicketType_ID" />
+                <ScalarProperty Name="票種名稱TicketType_Name" ColumnName="票種名稱TicketType_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="票價資訊TicketPrice">
+            <EntityTypeMapping TypeName="MDAModel.票價資訊TicketPrice">
+              <MappingFragment StoreEntitySet="票價資訊TicketPrice">
+                <ScalarProperty Name="票價明細Ticket_ID" ColumnName="票價明細Ticket_ID" />
+                <ScalarProperty Name="影城編號MainTheater_ID" ColumnName="影城編號MainTheater_ID" />
+                <ScalarProperty Name="票種編號TicketType_ID" ColumnName="票種編號TicketType_ID" />
+                <ScalarProperty Name="價格TicketPrice" ColumnName="價格TicketPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="場次Screening">
+            <EntityTypeMapping TypeName="MDAModel.場次Screening">
+              <MappingFragment StoreEntitySet="場次Screening">
+                <ScalarProperty Name="場次編號Screening_ID" ColumnName="場次編號Screening_ID" />
+                <ScalarProperty Name="影廳編號Cinema_ID" ColumnName="影廳編號Cinema_ID" />
+                <ScalarProperty Name="電影代碼Movie_Code" ColumnName="電影代碼Movie_Code" />
+                <ScalarProperty Name="放映日期Play_Date" ColumnName="放映日期Play_Date" />
+                <ScalarProperty Name="放映開始時間Play_Time" ColumnName="放映開始時間Play_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="評論圖片明細CommentImagesList">
+            <EntityTypeMapping TypeName="MDAModel.評論圖片明細CommentImagesList">
+              <MappingFragment StoreEntitySet="評論圖片明細CommentImagesList">
+                <ScalarProperty Name="評論圖片編號CC_ID" ColumnName="評論圖片編號CC_ID" />
+                <ScalarProperty Name="評論圖庫編號CommentImage_ID" ColumnName="評論圖庫編號CommentImage_ID" />
+                <ScalarProperty Name="評論編號Comment_ID" ColumnName="評論編號Comment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="評論圖片總表CommentImages">
+            <EntityTypeMapping TypeName="MDAModel.評論圖片總表CommentImages">
+              <MappingFragment StoreEntitySet="評論圖片總表CommentImages">
+                <ScalarProperty Name="評論圖庫編號CommentImage_ID" ColumnName="評論圖庫編號CommentImage_ID" />
+                <ScalarProperty Name="圖片Image" ColumnName="圖片Image" />
+                <ScalarProperty Name="屏蔽Invisible" ColumnName="屏蔽Invisible" />
+                <ScalarProperty Name="檢舉Report" ColumnName="檢舉Report" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="會員Members">
+            <EntityTypeMapping TypeName="MDAModel.會員Members">
+              <MappingFragment StoreEntitySet="會員Members">
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="會員電話Cellphone" ColumnName="會員電話Cellphone" />
+                <ScalarProperty Name="密碼Password" ColumnName="密碼Password" />
+                <ScalarProperty Name="姓氏L_Name" ColumnName="姓氏L_Name" />
+                <ScalarProperty Name="名字F_Name" ColumnName="名字F_Name" />
+                <ScalarProperty Name="暱稱NickName" ColumnName="暱稱NickName" />
+                <ScalarProperty Name="生日BirthDate" ColumnName="生日BirthDate" />
+                <ScalarProperty Name="性別Gender" ColumnName="性別Gender" />
+                <ScalarProperty Name="電子信箱Email" ColumnName="電子信箱Email" />
+                <ScalarProperty Name="地址Address" ColumnName="地址Address" />
+                <ScalarProperty Name="紅利點數Bonus" ColumnName="紅利點數Bonus" />
+                <ScalarProperty Name="正式會員Formal" ColumnName="正式會員Formal" />
+                <ScalarProperty Name="會員權限Permission" ColumnName="會員權限Permission" />
+                <ScalarProperty Name="會員照片Image" ColumnName="會員照片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影Movies">
+            <EntityTypeMapping TypeName="MDAModel.電影Movies">
+              <MappingFragment StoreEntitySet="電影Movies">
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="系列編號Series_ID" ColumnName="系列編號Series_ID" />
+                <ScalarProperty Name="中文標題Title_Cht" ColumnName="中文標題Title_Cht" />
+                <ScalarProperty Name="英文標題Title_Eng" ColumnName="英文標題Title_Eng" />
+                <ScalarProperty Name="上映年份Release_Year" ColumnName="上映年份Release_Year" />
+                <ScalarProperty Name="上映日期Release_Date" ColumnName="上映日期Release_Date" />
+                <ScalarProperty Name="片長Runtime" ColumnName="片長Runtime" />
+                <ScalarProperty Name="電影分級編號Rating_ID" ColumnName="電影分級編號Rating_ID" />
+                <ScalarProperty Name="評分Rate" ColumnName="評分Rate" />
+                <ScalarProperty Name="期待度anticipation" ColumnName="期待度anticipation" />
+                <ScalarProperty Name="票房BoxOffice" ColumnName="票房BoxOffice" />
+                <ScalarProperty Name="劇情大綱Plot" ColumnName="劇情大綱Plot" />
+                <ScalarProperty Name="最後上映日期Released_Date" ColumnName="最後上映日期Released_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影分級MovieRating">
+            <EntityTypeMapping TypeName="MDAModel.電影分級MovieRating">
+              <MappingFragment StoreEntitySet="電影分級MovieRating">
+                <ScalarProperty Name="分級編號Rating_ID" ColumnName="分級編號Rating_ID" />
+                <ScalarProperty Name="分級級數Rating_Level" ColumnName="分級級數Rating_Level" />
+                <ScalarProperty Name="分級說明Rating_illustrate" ColumnName="分級說明Rating_illustrate" />
+                <ScalarProperty Name="分級圖片Rating_Image" ColumnName="分級圖片Rating_Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影片種MovieType">
+            <EntityTypeMapping TypeName="MDAModel.電影片種MovieType">
+              <MappingFragment StoreEntitySet="電影片種MovieType">
+                <ScalarProperty Name="電影片種編號MT_ID" ColumnName="電影片種編號MT_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="片種編號Type_ID" ColumnName="片種編號Type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影主演Cast">
+            <EntityTypeMapping TypeName="MDAModel.電影主演Cast">
+              <MappingFragment StoreEntitySet="電影主演Cast">
+                <ScalarProperty Name="主演編號MA_ID" ColumnName="主演編號MA_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="演員編號Actor_ID" ColumnName="演員編號Actor_ID" />
+                <ScalarProperty Name="角色名字Character_Name" ColumnName="角色名字Character_Name" />
+                <ScalarProperty Name="角色說明Character_illustrate" ColumnName="角色說明Character_illustrate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影代碼MovieCode">
+            <EntityTypeMapping TypeName="MDAModel.電影代碼MovieCode">
+              <MappingFragment StoreEntitySet="電影代碼MovieCode">
+                <ScalarProperty Name="電影代碼編號MovieCode_ID_int" ColumnName="電影代碼編號MovieCode_ID int" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="語言編號Language_ID" ColumnName="語言編號Language_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影院Theater">
+            <EntityTypeMapping TypeName="MDAModel.電影院Theater">
+              <MappingFragment StoreEntitySet="電影院Theater">
+                <ScalarProperty Name="電影院編號Theater_ID" ColumnName="電影院編號Theater_ID" />
+                <ScalarProperty Name="電影院名稱Theater_Name" ColumnName="電影院名稱Theater_Name" />
+                <ScalarProperty Name="影城編號MainTheater_ID" ColumnName="影城編號MainTheater_ID" />
+                <ScalarProperty Name="營業時間BusinessHours" ColumnName="營業時間BusinessHours" />
+                <ScalarProperty Name="電話Phone" ColumnName="電話Phone" />
+                <ScalarProperty Name="地址Address" ColumnName="地址Address" />
+                <ScalarProperty Name="官方網站URL" ColumnName="官方網站URL" />
+                <ScalarProperty Name="電影院照片Image" ColumnName="電影院照片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影產地MovieOrigin">
+            <EntityTypeMapping TypeName="MDAModel.電影產地MovieOrigin">
+              <MappingFragment StoreEntitySet="電影產地MovieOrigin">
+                <ScalarProperty Name="電影產地編號MC_ID" ColumnName="電影產地編號MC_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="國家編號Country_ID" ColumnName="國家編號Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影評論MovieComment">
+            <EntityTypeMapping TypeName="MDAModel.電影評論MovieComment">
+              <MappingFragment StoreEntitySet="電影評論MovieComment">
+                <ScalarProperty Name="評論編號Comment_ID" ColumnName="評論編號Comment_ID" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="評分Rate" ColumnName="評分Rate" />
+                <ScalarProperty Name="期待度anticipation" ColumnName="期待度anticipation" />
+                <ScalarProperty Name="評論標題Comment_Title" ColumnName="評論標題Comment_Title" />
+                <ScalarProperty Name="評論內容Comments" ColumnName="評論內容Comments" />
+                <ScalarProperty Name="發佈時間Comment_Time" ColumnName="發佈時間Comment_Time" />
+                <ScalarProperty Name="觀影日期Viewing_Time" ColumnName="觀影日期Viewing_Time" />
+                <ScalarProperty Name="觀影方式Source" ColumnName="觀影方式Source" />
+                <ScalarProperty Name="公開等級編號Public_ID" ColumnName="公開等級編號Public_ID" />
+                <ScalarProperty Name="是否開放討論串OX_Floor" ColumnName="是否開放討論串OX_Floor" />
+                <ScalarProperty Name="屏蔽Invisible" ColumnName="屏蔽Invisible" />
+                <ScalarProperty Name="檢舉Report" ColumnName="檢舉Report" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影圖片MovieIImagesList">
+            <EntityTypeMapping TypeName="MDAModel.電影圖片MovieIImagesList">
+              <MappingFragment StoreEntitySet="電影圖片MovieIImagesList">
+                <ScalarProperty Name="電影圖片編號MI_ID" ColumnName="電影圖片編號MI_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="圖片編號Image_ID" ColumnName="圖片編號Image_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影圖片總表MovieImages">
+            <EntityTypeMapping TypeName="MDAModel.電影圖片總表MovieImages">
+              <MappingFragment StoreEntitySet="電影圖片總表MovieImages">
+                <ScalarProperty Name="圖片編號Image_ID" ColumnName="圖片編號Image_ID" />
+                <ScalarProperty Name="圖片Image" ColumnName="圖片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影語言MovieLanguage">
+            <EntityTypeMapping TypeName="MDAModel.電影語言MovieLanguage">
+              <MappingFragment StoreEntitySet="電影語言MovieLanguage">
+                <ScalarProperty Name="語言編號Language_ID" ColumnName="語言編號Language_ID" />
+                <ScalarProperty Name="語言名稱Language_Name" ColumnName="語言名稱Language_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="電影導演MovieDirector">
+            <EntityTypeMapping TypeName="MDAModel.電影導演MovieDirector">
+              <MappingFragment StoreEntitySet="電影導演MovieDirector">
+                <ScalarProperty Name="電影導演編號MD_ID" ColumnName="電影導演編號MD_ID" />
+                <ScalarProperty Name="電影編號Movie_ID" ColumnName="電影編號Movie_ID" />
+                <ScalarProperty Name="導演編號Director_ID" ColumnName="導演編號Director_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="對象Targets">
+            <EntityTypeMapping TypeName="MDAModel.對象Targets">
+              <MappingFragment StoreEntitySet="對象Targets">
+                <ScalarProperty Name="對象Target_ID" ColumnName="對象Target_ID" />
+                <ScalarProperty Name="對象名稱Target_Name" ColumnName="對象名稱Target_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="演員總表Actors">
+            <EntityTypeMapping TypeName="MDAModel.演員總表Actors">
+              <MappingFragment StoreEntitySet="演員總表Actors">
+                <ScalarProperty Name="演員編號Actors_ID" ColumnName="演員編號Actors_ID" />
+                <ScalarProperty Name="中文名字Name_Cht" ColumnName="中文名字Name_Cht" />
+                <ScalarProperty Name="英文名字Name_Eng" ColumnName="英文名字Name_Eng" />
+                <ScalarProperty Name="演員照片Image" ColumnName="演員照片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="影城MainTheater">
+            <EntityTypeMapping TypeName="MDAModel.影城MainTheater">
+              <MappingFragment StoreEntitySet="影城MainTheater">
+                <ScalarProperty Name="影城編號MainTheater_ID" ColumnName="影城編號MainTheater_ID" />
+                <ScalarProperty Name="影城名稱MainTheater_Name" ColumnName="影城名稱MainTheater_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="影廳Cinema">
+            <EntityTypeMapping TypeName="MDAModel.影廳Cinema">
+              <MappingFragment StoreEntitySet="影廳Cinema">
+                <ScalarProperty Name="影廳編號Cinema_ID" ColumnName="影廳編號Cinema_ID" />
+                <ScalarProperty Name="影廳名稱Cinema_Name" ColumnName="影廳名稱Cinema_Name" />
+                <ScalarProperty Name="電影院編號Theater_ID" ColumnName="電影院編號Theater_ID" />
+                <ScalarProperty Name="廳種名稱Cinema_Cls_Name" ColumnName="廳種名稱Cinema_Cls_Name" />
+                <ScalarProperty Name="座位資訊SeatInfo" ColumnName="座位資訊SeatInfo" />
+                <ScalarProperty Name="影廳照片Image" ColumnName="影廳照片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="標籤明細HashtagsList">
+            <EntityTypeMapping TypeName="MDAModel.標籤明細HashtagsList">
+              <MappingFragment StoreEntitySet="標籤明細HashtagsList">
+                <ScalarProperty Name="標籤明細編號CH_ID" ColumnName="標籤明細編號CH_ID" />
+                <ScalarProperty Name="評論編號Comment_ID" ColumnName="評論編號Comment_ID" />
+                <ScalarProperty Name="標籤編號Hashtag_ID" ColumnName="標籤編號Hashtag_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="標籤總表Hashtags">
+            <EntityTypeMapping TypeName="MDAModel.標籤總表Hashtags">
+              <MappingFragment StoreEntitySet="標籤總表Hashtags">
+                <ScalarProperty Name="標籤編號Hashtag_ID" ColumnName="標籤編號Hashtag_ID" />
+                <ScalarProperty Name="標籤Hashtag" ColumnName="標籤Hashtag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="導演總表Director">
+            <EntityTypeMapping TypeName="MDAModel.導演總表Director">
+              <MappingFragment StoreEntitySet="導演總表Director">
+                <ScalarProperty Name="導演編號Director_ID" ColumnName="導演編號Director_ID" />
+                <ScalarProperty Name="中文名字Name_Cht" ColumnName="中文名字Name_Cht" />
+                <ScalarProperty Name="英文名字Name_Eng" ColumnName="英文名字Name_Eng" />
+                <ScalarProperty Name="導演照片Image" ColumnName="導演照片Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="優惠明細CouponLists">
+            <EntityTypeMapping TypeName="MDAModel.優惠明細CouponLists">
+              <MappingFragment StoreEntitySet="優惠明細CouponLists">
+                <ScalarProperty Name="優惠明細編號CouponList_ID" ColumnName="優惠明細編號CouponList_ID" />
+                <ScalarProperty Name="會員編號Member_ID" ColumnName="會員編號Member_ID" />
+                <ScalarProperty Name="優惠編號Coupon_ID" ColumnName="優惠編號Coupon_ID" />
+                <ScalarProperty Name="是否使用優惠OX_CouponUsing" ColumnName="是否使用優惠OX_CouponUsing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="優惠總表Coupon">
+            <EntityTypeMapping TypeName="MDAModel.優惠總表Coupon">
+              <MappingFragment StoreEntitySet="優惠總表Coupon">
+                <ScalarProperty Name="優惠編號Coupon_ID" ColumnName="優惠編號Coupon_ID" />
+                <ScalarProperty Name="優惠名稱Coupon_Name" ColumnName="優惠名稱Coupon_Name" />
+                <ScalarProperty Name="優惠折扣CouponDiscount" ColumnName="優惠折扣CouponDiscount" />
+                <ScalarProperty Name="優惠代碼Coupon_Code" ColumnName="優惠代碼Coupon_Code" />
+                <ScalarProperty Name="優惠截止日期CouponDueDate" ColumnName="優惠截止日期CouponDueDate" />
+                <ScalarProperty Name="優惠所需紅利BonusCost" ColumnName="優惠所需紅利BonusCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="購買商品明細Receipt">
+            <EntityTypeMapping TypeName="MDAModel.購買商品明細Receipt">
+              <MappingFragment StoreEntitySet="購買商品明細Receipt">
+                <ScalarProperty Name="購買商品明細編號Receipt_ID" ColumnName="購買商品明細編號Receipt_ID" />
+                <ScalarProperty Name="訂單編號Order_ID" ColumnName="訂單編號Order_ID" />
+                <ScalarProperty Name="商品編號Product_ID" ColumnName="商品編號Product_ID" />
+                <ScalarProperty Name="商品數量Qty" ColumnName="商品數量Qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
